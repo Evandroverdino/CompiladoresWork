@@ -35,6 +35,17 @@ public class LexicalAnalyzer {
 			exception.printStackTrace();
 		}
 	}
+	
+	public void printTokens() {
+		Token token;
+		while (hasMoreTokens()) {
+			token = nextToken();
+			System.out.println(token.toString());
+		}
+		System.out.println();
+		System.out.println();
+		readFile();
+	}
 
 	public boolean hasMoreTokens() {
 		if (!linesList.isEmpty()) {
