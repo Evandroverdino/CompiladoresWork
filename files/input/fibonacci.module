@@ -1,0 +1,31 @@
+module Fibonacci {
+	fun fib(int limit) {
+		int [limit +1] array;
+		array[ 0 ] = 0;
+		array[ 1 ] = 1;
+		int i = 0;
+
+		when(limit <= 0) {
+			show("0");
+		}
+
+		if(i < limit) {
+			when(i > 2) {
+				array[ i ] = array[i -1] + array[i -2];
+			}
+			show(array[ i ]);
+
+			when(i != limit - 1) {
+				show(", ");
+			}
+			i = i + 1;
+		}
+	}
+
+	fun int main() {
+		int limit;
+		read(limit);
+		fib(limit);
+		return 0;
+	}
+}
