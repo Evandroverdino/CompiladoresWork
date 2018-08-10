@@ -2,7 +2,7 @@ package analyzer;
 
 import lexical.LexicalAnalyzer;
 
-public class ModAnalyzer {
+public class ModuleAnalyzer {
 	
 	private static LexicalAnalyzer lexicalAnalyzer;
 	private static String filePath = "files/input/fibonacci.module";
