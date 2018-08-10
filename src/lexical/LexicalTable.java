@@ -8,7 +8,6 @@ import java.util.Map;
 public class LexicalTable {
 
 	public static Map<String, TokenCategory> lexemesMap = new HashMap<String, TokenCategory>();
-	public static Map<String, TokenCategory> delimiterMap = new HashMap<String, TokenCategory>();
 	public static List<Character> symbolList = new ArrayList<Character>();
 
 	static {
@@ -60,7 +59,7 @@ public class LexicalTable {
 		lexemesMap.put("{", TokenCategory.tOK);
 		lexemesMap.put("}", TokenCategory.tCK);
 		
-		// Definidor de comentário
+		// Definidor de comentï¿½rio
 
 		lexemesMap.put("#", TokenCategory.tCOMMENT);
 
@@ -76,11 +75,11 @@ public class LexicalTable {
 		lexemesMap.put(",", TokenCategory.tSPTR);
 		lexemesMap.put(":", TokenCategory.tCO);
 
-		// Terminador de instrução
+		// Terminador de instruï¿½ï¿½o
 
 		lexemesMap.put(";", TokenCategory.tSCO);
 
-		// Lista de símbolos
+		// Lista de sï¿½mbolos
 		
 		symbolList.add(' ');
 		symbolList.add('.');
@@ -111,5 +110,7 @@ public class LexicalTable {
 		symbolList.add('%');
 		symbolList.add('&');
 		symbolList.add('$');
+		symbolList.add('^');
+		symbolList.add('|');
 	}
 }
