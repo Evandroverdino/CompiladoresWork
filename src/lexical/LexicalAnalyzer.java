@@ -182,12 +182,6 @@ public class LexicalAnalyzer {
 						currentColumn++;
 						break;
 					}
-				}
-
-				if (currentChar == '$') {
-					tokenValue += currentChar;
-					currentLine++;
-					currentColumn = 0;
 				}*/
 				break;
 
