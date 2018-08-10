@@ -12,6 +12,29 @@ public class LexicalTable {
 	public static List<Character> symbolList = new ArrayList<Character>();
 
 	static {
+		
+		// Palavras-reservadas
+
+		lexemesMap.put("empty", TokenCategory.tEMPTY);
+		lexemesMap.put("int", TokenCategory.tINT);
+		lexemesMap.put("float", TokenCategory.tFLOAT);
+		lexemesMap.put("char", TokenCategory.tCHAR);
+		lexemesMap.put("string", TokenCategory.tSTRING);
+		lexemesMap.put("bool", TokenCategory.tBOOL);
+		lexemesMap.put("module", TokenCategory.tMODULE);
+		lexemesMap.put("fun", TokenCategory.tFUN);
+		lexemesMap.put("return", TokenCategory.tRETURN);
+		lexemesMap.put("main", TokenCategory.tMAIN);
+		lexemesMap.put("read", TokenCategory.tREAD);
+		lexemesMap.put("show", TokenCategory.tSHOW);
+		lexemesMap.put("if", TokenCategory.tIF);
+		lexemesMap.put("elif", TokenCategory.tELIF);
+		lexemesMap.put("else", TokenCategory.tELSE);
+		lexemesMap.put("when", TokenCategory.tWHILE);
+		lexemesMap.put("repeater", TokenCategory.tREPEATER);
+		lexemesMap.put("true", TokenCategory.tTRUE);
+		lexemesMap.put("false", TokenCategory.tFALSE);
+		lexemesMap.put("null", TokenCategory.tNULL);
 
 		// Operadores
 
@@ -37,7 +60,7 @@ public class LexicalTable {
 		lexemesMap.put("{", TokenCategory.tOK);
 		lexemesMap.put("}", TokenCategory.tCK);
 		
-		// Definidor de comentÃ¡rio
+		// Definidor de comentário
 
 		lexemesMap.put("#", TokenCategory.tCOMMENT);
 
@@ -53,49 +76,28 @@ public class LexicalTable {
 		lexemesMap.put(",", TokenCategory.tSPTR);
 		lexemesMap.put(":", TokenCategory.tCO);
 
-		// Terminador de instruÃ§Ã£o
+		// Terminador de instrução
 
 		lexemesMap.put(";", TokenCategory.tSCO);
 
-		// Palavras-reservadas
-
-		lexemesMap.put("empty", TokenCategory.tEMPTY);
-		lexemesMap.put("int", TokenCategory.tINT);
-		lexemesMap.put("float", TokenCategory.tFLOAT);
-		lexemesMap.put("char", TokenCategory.tCHAR);
-		lexemesMap.put("string", TokenCategory.tSTRING);
-		lexemesMap.put("bool", TokenCategory.tBOOL);
-		lexemesMap.put("module", TokenCategory.tMODULE);
-		lexemesMap.put("fun", TokenCategory.tFUN);
-		lexemesMap.put("return", TokenCategory.tRETURN);
-		lexemesMap.put("main", TokenCategory.tMAIN);
-		lexemesMap.put("read", TokenCategory.tREAD);
-		lexemesMap.put("show", TokenCategory.tSHOW);
-		lexemesMap.put("if", TokenCategory.tIF);
-		lexemesMap.put("elif", TokenCategory.tELIF);
-		lexemesMap.put("else", TokenCategory.tELSE);
-		lexemesMap.put("when", TokenCategory.tWHILE);
-		lexemesMap.put("repeater", TokenCategory.tREPEATER);
-		lexemesMap.put("true", TokenCategory.tTRUE);
-		lexemesMap.put("false", TokenCategory.tFALSE);
-		lexemesMap.put("null", TokenCategory.tNULL);
-
-		// SÃ­mbolos indicadores de tokens
+		// Lista de símbolos
 		
 		symbolList.add(' ');
+		symbolList.add('.');
 		symbolList.add(',');
+		symbolList.add(':');
 		symbolList.add(';');
+		symbolList.add('!');
+		symbolList.add('?');
 		symbolList.add('+');
 		symbolList.add('-');
 		symbolList.add('*');
-		symbolList.add('\\');
 		symbolList.add('/');
-		symbolList.add('#');
-		symbolList.add('$');
+		symbolList.add('\\');
+		symbolList.add('_');
 		symbolList.add('<');
 		symbolList.add('>');
 		symbolList.add('=');
-		symbolList.add('~');
 		symbolList.add('(');
 		symbolList.add(')');
 		symbolList.add('[');
@@ -104,6 +106,10 @@ public class LexicalTable {
 		symbolList.add('}');
 		symbolList.add('\'');
 		symbolList.add('"');
+		symbolList.add('#');
+		symbolList.add('@');
+		symbolList.add('%');
+		symbolList.add('&');
+		symbolList.add('$');
 	}
-
 }
