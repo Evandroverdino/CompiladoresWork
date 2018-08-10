@@ -10,7 +10,8 @@ public class LexicalAnalyzer {
 	private List<String> linesList;
 	private String line;
 	private String filePath;
-	private int currentLine, currentColumn, tokenBeginColumn, tokenBeginLine = 0;
+	private int currentLine, currentColumn = 0;
+	private int tokenBeginColumn, tokenBeginLine = 0;
 
 	private final char LINE_BREAK = '\n';
 
@@ -35,7 +36,7 @@ public class LexicalAnalyzer {
 			exception.printStackTrace();
 		}
 	}
-	
+
 	public void printTokens() {
 		Token token;
 		while (hasMoreTokens()) {
@@ -125,9 +126,11 @@ public class LexicalAnalyzer {
 				}
 			}
 		} else {
-			// Enquanto nao for encontrado um símbolo especial, os caracteres
-			// serao concatenados em uma string que deverá ser um token
-			// identificador ou palavra chave.
+			/*
+			 * Enquanto nao for encontrado um sï¿½mbolo especial, os caracteres serao
+			 * concatenados em uma string que deverï¿½ ser um token identificador ou palavra
+			 * chave.
+			 */
 			while (!LexicalTable.symbolList.contains(currentChar)) {
 				tokenValue += currentChar;
 				currentChar = nextChar();
@@ -138,9 +141,9 @@ public class LexicalAnalyzer {
 		}
 
 		if (tokenValue == "") {
-			// Verifição de constantes inteiras ou decimais
+			// Verifiï¿½ï¿½o de constantes inteiras ou decimais
 			switch (currentChar) {
-			// Compondo um token que possivelmente é uma string
+			// Compondo um token que possivelmente ï¿½ uma string
 			case '"':
 				tokenValue += currentChar;
 				currentChar = nextChar();
@@ -151,7 +154,7 @@ public class LexicalAnalyzer {
 					break;
 				}
 
-				// Buscar os próximos caracteres até que encontre uma ", ou acabe a linha
+				// Buscar os prï¿½ximos caracteres atï¿½ que encontre uma ", ou acabe a linha
 				while (currentChar != LINE_BREAK) {
 					tokenValue += currentChar;
 					currentChar = nextChar();
@@ -164,22 +167,35 @@ public class LexicalAnalyzer {
 				}
 				break;
 
-			// Verificação de comentários
+			// TODO Verificaï¿½ï¿½o de comentï¿½rios
 			case '#':
-				tokenValue += currentChar;
+				/*tokenValue += currentChar;
 				currentChar = nextChar();
+
+				// Buscar os prï¿½ximos caracteres atï¿½ que encontre uma ", ou acabe a linha
+				while (currentChar != LINE_BREAK) {
+					tokenValue += currentChar;
+					currentChar = nextChar();
+
+					if (currentChar == '"') {
+						tokenValue += currentChar;
+						currentColumn++;
+						break;
+					}
+				}
 
 				if (currentChar == '$') {
 					tokenValue += currentChar;
 					currentLine++;
 					currentColumn = 0;
-				}
+				}*/
 				break;
 
-			case '\'': // Compondo um token que possivelmente é um char
+			// Compondo um token que possivelmente ï¿½ um char
+			case '\'':
 				tokenValue += currentChar;
 
-				// Buscar os próximos dois caracteres
+				// Buscar os prï¿½ximos dois caracteres
 				currentChar = nextChar();
 				if (currentChar != LINE_BREAK) {
 					tokenValue += currentChar;
@@ -205,7 +221,10 @@ public class LexicalAnalyzer {
 				}
 				break;
 
-			// Compondo um token que pode ser operador aditivo, de concatenação ou constante numérica
+			/*
+			 * Compondo um token que pode ser operador aditivo de concatenaï¿½ï¿½o ou constante
+			 * numï¿½rica.
+			 */
 			case '+':
 				tokenValue += currentChar;
 				currentChar = nextChar();
@@ -242,26 +261,19 @@ public class LexicalAnalyzer {
 	private TokenCategory analyzeCategory(String tokenValue) {
 		if (isOpeUnary(tokenValue)) {
 			return TokenCategory.tOPU;
-
 		} else if (LexicalTable.lexemesMap.containsKey(tokenValue)) {
 			return LexicalTable.lexemesMap.get(tokenValue);
-
 		} else if (isCteString(tokenValue)) {
 			return TokenCategory.tCTESTRING;
-
 		} else if (isCteChar(tokenValue)) {
 			return TokenCategory.tCHAR;
-
 		} else if (isCteInt(tokenValue)) {
 			return TokenCategory.tCTEINT;
-
 		} else if (isCteFloat(tokenValue)) {
 			return TokenCategory.tCTEFLOAT;
-
 		} else if (isIdentifier(tokenValue)) {
 			return TokenCategory.tID;
 		}
-
 		return TokenCategory.tNULL;
 	}
 
@@ -291,15 +303,36 @@ public class LexicalAnalyzer {
 
 	}
 
-	// Decide se o - é o operador aditivo ou se é o unário negativo
-	private boolean isOpeUnary(String tkValue) {
-		if (tkValue.equals("-")) { 
-			Character previousChar = previousNotBlankChar();
-			if ((previousChar != null) && Character.toString(previousChar).matches("[_a-zA-Z0-9]")) {
-				return false;
-			} else {
+	private boolean isIdentifier(String tokenValue) {
+		if (tokenValue.matches("[a-zA-Z][a-zA-Z0-9]*")) {
+			if (tokenValue.length() < 32) {
 				return true;
+			} else {
+				printError("identificador muito longo.", tokenValue);
 			}
+		} else if (tokenValue.matches("[^_a-zA-Z\"'].*")) {
+			/*
+			 * Caso em que o identificador nï¿½o comeï¿½a com o caractere esperado. Tambï¿½m nï¿½o
+			 * considera tokenValue que comeï¿½a com ", ' ou nï¿½mero pois caso algum tokenValue
+			 * nessa condiï¿½ï¿½o chegue atï¿½ aqui, ï¿½ uma string ou um char que nï¿½o foi
+			 * propriamente fechado, ou uma constante decimal em formato errado. Enquanto
+			 * nao for encontrado um sï¿½mbolo especial, os caracteres serao concatenados em
+			 * uma string que deverï¿½ ser um token identificador ou palavra chave.
+			 */
+			printError("identificador nï¿½o iniciado com letra.", tokenValue);
+		} else if (tokenValue.matches("[_a-zA-Z].*")) {
+			/*
+			 * Caso em que o identificador comeï¿½a com o caracter esperado, mas contï¿½m algum
+			 * caracter invï¿½lido,
+			 */
+			printError("identificador contï¿½m caracter invï¿½lido.", tokenValue);
+		}
+		return false;
+	}
+
+	private boolean isCteInt(String tokenValue) {
+		if (tokenValue.matches("(\\d)+")) {
+			return true;
 		}
 		return false;
 	}
@@ -313,9 +346,11 @@ public class LexicalAnalyzer {
 		return false;
 	}
 
-	private boolean isCteInt(String tokenValue) {
-		if (tokenValue.matches("(\\d)+")) {
+	private boolean isCteChar(String tokenValue) {
+		if (tokenValue.matches("'(.?)'")) {
 			return true;
+		} else if (tokenValue.startsWith("'")) {
+			printError("caracter nï¿½o fechado corretamente com '.", tokenValue);
 		}
 		return false;
 	}
@@ -324,42 +359,20 @@ public class LexicalAnalyzer {
 		if (tokenValue.startsWith("\"") && tokenValue.endsWith("\"")) {
 			return true;
 		} else if (tokenValue.startsWith("\"")) {
-			printError("cadeia de caracteres não fechada corretamente com '\"'.", tokenValue);
+			printError("cadeia de caracteres nï¿½o fechada corretamente com '\"'.", tokenValue);
 		}
 		return false;
 	}
 
-	private boolean isCteChar(String tokenValue) {
-		if (tokenValue.matches("'(.?)'")) {
-			return true;
-		} else if (tokenValue.startsWith("'")) {
-			printError("caracter não fechado corretamente com '.", tokenValue);
-		}
-		return false;
-	}
-
-	private boolean isIdentifier(String tokenValue) {
-		if (tokenValue.matches("[a-zA-Z][a-zA-Z0-9]*")) {
-			if (tokenValue.length() < 32) {
-				return true;
+	// Decide se o - ï¿½ o operador aditivo ou se ï¿½ o unï¿½rio negativo
+	private boolean isOpeUnary(String tokenValue) {
+		if (tokenValue.equals("-")) {
+			Character previousChar = previousNotBlankChar();
+			if ((previousChar != null) && Character.toString(previousChar).matches("[a-zA-Z][a-zA-Z0-9]*")) {
+				return false;
 			} else {
-				printError("identificador muito longo.", tokenValue);
+				return true;
 			}
-
-			// Caso em que o identificador não começa com o caractere esperado.
-			// Também não considera tokenValue que começa com ", ' ou número pois
-			// caso
-			// algum tokenValue nessa condição chegue até aqui, é uma string ou um
-			// char que
-			// não foi propriamente fechado, ou uma constante decimal em formato
-			// errado.
-		} else if (tokenValue.matches("[^_a-zA-Z\"'].*")) {
-			printError("identificador não iniciado com letra.", tokenValue);
-
-			// Caso em que o identificador começa com o caracter esperado, mas
-			// contém algum caracter inválido,
-		} else if (tokenValue.matches("[_a-zA-Z].*")) {
-			printError("identificador contém caracter inválido.", tokenValue);
 		}
 		return false;
 	}
