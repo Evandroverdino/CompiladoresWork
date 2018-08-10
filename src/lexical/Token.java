@@ -12,7 +12,7 @@ public class Token {
 
 	@Override
 	public String toString() {
-		return "<" + line + "," + column + "> " + category + " = '" + value + "'";
+		return "\"" + "[" + line + ", " + column + "] " + "(" + line + ", " + category + ") " + "{" + value + "}" + "\"";
 	}
 
 	public String getValue() {
