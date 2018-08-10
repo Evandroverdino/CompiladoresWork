@@ -15,7 +15,7 @@ module ShellSort {
 				c = values[i];
 				j = i;
 
-				if(j >= h && values[j - h] > c) {
+				if(j >= h and values[j - h] > c) {
 					values[j] = values[j - h];
 					j = j - h;
 				}
@@ -32,7 +32,7 @@ module ShellSort {
 		int i = 0;
 		int[] values;
 
-		while(read() ! = EOF) {
+		while(read() != EOF) {
 			values[ i ] = lastValueRead();
 			i + 1;
 		}
