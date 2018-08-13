@@ -172,22 +172,16 @@ public class LexicalAnalyzer {
 				/*tokenValue += currentChar;
 				currentChar = nextChar();
 
-				// Buscar os pr�ximos caracteres at� que encontre uma ", ou acabe a linha
+				// Buscar os pr�ximos caracteres at� que encontre delimitador de comentário
 				while (currentChar != LINE_BREAK) {
 					tokenValue += currentChar;
 					currentChar = nextChar();
 
-					if (currentChar == '"') {
+					if (currentChar == '#') {
 						tokenValue += currentChar;
 						currentColumn++;
 						break;
 					}
-				}
-
-				if (currentChar == '$') {
-					tokenValue += currentChar;
-					currentLine++;
-					currentColumn = 0;
 				}*/
 				break;
 

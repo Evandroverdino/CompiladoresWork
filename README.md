@@ -1,2 +1,2 @@
-# ModAnalyzer
-Projeto de compiladores para a linguagem Mod
+# ModuleAnalyzer
+Projeto de compiladores para a linguagem Module
