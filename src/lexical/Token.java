@@ -10,9 +10,9 @@ public class Token {
 	public Token() {
 	}
 
-	@Override
-	public String toString() {
-		return "\"" + "[" + line + ", " + column + "] " + "(" + line + ", " + category + ") " + "{" + value + "}" + "\"";
+	public String output() {
+		return String.format("[%04d" + ", " + "%04d] " + "(%04d" + ", " + "%s) " + "{%s}", line, column,
+                category.getCategoryValue(), category.name(), value);
 	}
 
 	public String getValue() {
