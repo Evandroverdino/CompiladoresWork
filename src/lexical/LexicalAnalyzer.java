@@ -7,6 +7,7 @@ import java.util.List;
 
 public class LexicalAnalyzer {
 
+	private List<Integer> printedLines;
 	private List<String> linesList;
 	private String line;
 	private String filePath;
@@ -18,6 +19,7 @@ public class LexicalAnalyzer {
 	private final char LINE_BREAK = '\n';
 
 	public LexicalAnalyzer(String filePath) {
+		printedLines = new ArrayList<Integer>();
 		linesList = new ArrayList<String>();
 		this.filePath = filePath;
 	}
@@ -44,6 +46,7 @@ public class LexicalAnalyzer {
 			if (currentLine < linesList.size()) {
 				line = linesList.get(currentLine);
 				line = line.replace('\t', ' ');
+				showCurrentLine(currentLine);
 
 				if (line.substring(currentColumn).matches("\\s*")) {
 					currentLine++;
@@ -240,10 +243,12 @@ public class LexicalAnalyzer {
 		return null;
 	}
 
-	/*
-	 * private void showCurrentLine(boolean showLine) { System.out.println(showLine
-	 * ? line : ""); }
-	 */
+	private void showCurrentLine(int currentLine) {
+		if (!printedLines.contains(currentLine)) {
+			printedLines.add(currentLine);
+			System.out.println(line);
+		}
+	}
 
 	public void printTokens() {
 		Token token;
@@ -260,22 +265,8 @@ public class LexicalAnalyzer {
 			} else {
 				printError("Identificador muito longo.", tokenValue);
 			}
-		} else if (tokenValue.matches("[^_a-zA-Z\"'].*")) {
-			/*
-			 * Caso em que o identificador n�o come�a com o caractere esperado. Tamb�m n�o
-			 * considera tokenValue que come�a com ", ' ou n�mero pois caso algum tokenValue
-			 * nessa condi��o chegue at� aqui, � uma string ou um char que n�o foi
-			 * propriamente fechado, ou uma constante decimal em formato errado. Enquanto
-			 * nao for encontrado um s�mbolo especial, os caracteres serao concatenados em
-			 * uma string que dever� ser um token identificador ou palavra chave.
-			 */
+		} else {
 			printError("Identificador n�o iniciado com letra.", tokenValue);
-		} else if (tokenValue.matches("[_a-zA-Z].*")) {
-			/*
-			 * Caso em que o identificador come�a com o caracter esperado, mas cont�m algum
-			 * caracter inv�lido,
-			 */
-			printError("Identificador cont�m caracter inv�lido.", tokenValue);
 		}
 		return false;
 	}
