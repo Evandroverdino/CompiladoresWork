@@ -11,7 +11,7 @@ public class Token {
 	}
 
 	public String output() {
-		return String.format("[%04d" + ", " + "%04d] " + "(%04d" + ", " + "%s) " + "{%s}", line, column,
+		return String.format("\t\t[%04d" + ", " + "%04d] " + "(%04d" + ", " + "%s) " + "{%s}", line, column,
                 category.getCategoryValue(), category.name(), value);
 	}
 
