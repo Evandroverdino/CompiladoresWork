@@ -96,14 +96,14 @@ public class LexicalAnalyzer {
 		}
 
 		if (Character.toString(currentChar).matches("\\d")) {
-			incrementTokenValue();
+			appendTokenValue();
 			currentChar = nextChar();
 			while (Character.toString(currentChar).matches("\\d")) {
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 				if (currentChar == '.') {
 					while (Character.toString(currentChar).matches("\\d")) {
-						incrementTokenValue();
+						appendTokenValue();
 						currentChar = nextChar();
 					}
 				}
@@ -118,36 +118,36 @@ public class LexicalAnalyzer {
 		if (tokenValue == "") {
 			switch (currentChar) {
 			case '"':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 
 				if (currentChar == '"') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentColumn++;
 					break;
 				}
 				while (currentChar != LINE_BREAK) {
-					incrementTokenValue();
+					appendTokenValue();
 					currentChar = nextChar();
 
 					if (currentChar == '"') {
-						incrementTokenValue();
+						appendTokenValue();
 						currentColumn++;
 						break;
 					}
 				}
 				break;
 			case '\'':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 
 				if (currentChar != LINE_BREAK) {
-					incrementTokenValue();
+					appendTokenValue();
 				}
 
 				currentChar = nextChar();
 				if (currentChar == '\'') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentColumn++;
 				}
 				break;
@@ -155,24 +155,24 @@ public class LexicalAnalyzer {
 			case '>':
 			case '!':
 			case '=':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 				if (currentChar == '=') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentColumn++;
 				}
 				break;
 			case '+':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 
 				if (currentChar == '+') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentChar = nextChar();
 				}
 				break;
 			default:
-				incrementTokenValue();
+				appendTokenValue();
 				currentColumn++;
 				break;
 			}
@@ -183,7 +183,7 @@ public class LexicalAnalyzer {
 		return token;
 	}
 
-	private void incrementTokenValue() {
+	private void appendTokenValue() {
 		tokenValue += currentChar;
 	}
 
