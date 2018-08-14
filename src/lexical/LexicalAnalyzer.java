@@ -179,11 +179,7 @@ public class LexicalAnalyzer {
 		}
 		tokenValue = tokenValue.trim();
 
-		token = new Token();
-		token.setValue(tokenValue);
-		token.setLine(tokenBeginLine);
-		token.setColumn(tokenBeginColumn);
-		token.setCategory(analyzeCategory(tokenValue));
+		token = new Token(tokenValue, tokenBeginLine, tokenBeginColumn, analyzeCategory(tokenValue));
 		return token;
 	}
 
