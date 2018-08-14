@@ -250,7 +250,7 @@ public class LexicalAnalyzer {
 		Token token;
 		while (hasMoreTokens()) {
 			token = nextToken();
-			System.out.println(token.output());
+			System.out.println(token.toString());
 		}
 	}
 
