@@ -96,14 +96,14 @@ public class LexicalAnalyzer {
 		}
 
 		if (Character.toString(currentChar).matches("\\d")) {
-			incrementTokenValue();
+			appendTokenValue();
 			currentChar = nextChar();
 			while (Character.toString(currentChar).matches("\\d")) {
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 				if (currentChar == '.') {
 					while (Character.toString(currentChar).matches("\\d")) {
-						incrementTokenValue();
+						appendTokenValue();
 						currentChar = nextChar();
 					}
 				}
@@ -118,36 +118,36 @@ public class LexicalAnalyzer {
 		if (tokenValue == "") {
 			switch (currentChar) {
 			case '"':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 
 				if (currentChar == '"') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentColumn++;
 					break;
 				}
 				while (currentChar != LINE_BREAK) {
-					incrementTokenValue();
+					appendTokenValue();
 					currentChar = nextChar();
 
 					if (currentChar == '"') {
-						incrementTokenValue();
+						appendTokenValue();
 						currentColumn++;
 						break;
 					}
 				}
 				break;
 			case '\'':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 
 				if (currentChar != LINE_BREAK) {
-					incrementTokenValue();
+					appendTokenValue();
 				}
 
 				currentChar = nextChar();
 				if (currentChar == '\'') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentColumn++;
 				}
 				break;
@@ -155,39 +155,35 @@ public class LexicalAnalyzer {
 			case '>':
 			case '!':
 			case '=':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 				if (currentChar == '=') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentColumn++;
 				}
 				break;
 			case '+':
-				incrementTokenValue();
+				appendTokenValue();
 				currentChar = nextChar();
 
 				if (currentChar == '+') {
-					incrementTokenValue();
+					appendTokenValue();
 					currentChar = nextChar();
 				}
 				break;
 			default:
-				incrementTokenValue();
+				appendTokenValue();
 				currentColumn++;
 				break;
 			}
 		}
 		tokenValue = tokenValue.trim();
 
-		token = new Token();
-		token.setValue(tokenValue);
-		token.setLine(tokenBeginLine);
-		token.setColumn(tokenBeginColumn);
-		token.setCategory(analyzeCategory(tokenValue));
+		token = new Token(tokenValue, tokenBeginLine, tokenBeginColumn, analyzeCategory(tokenValue));
 		return token;
 	}
 
-	private void incrementTokenValue() {
+	private void appendTokenValue() {
 		tokenValue += currentChar;
 	}
 
@@ -254,7 +250,7 @@ public class LexicalAnalyzer {
 		Token token;
 		while (hasMoreTokens()) {
 			token = nextToken();
-			System.out.println(token.output());
+			System.out.println(token.toString());
 		}
 	}
 
