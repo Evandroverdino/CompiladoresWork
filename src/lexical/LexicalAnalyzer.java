@@ -7,7 +7,6 @@ import java.util.List;
 
 public class LexicalAnalyzer {
 
-	private List<Integer> printedLines;
 	private List<String> linesList;
 	private String line;
 	private String filePath;
@@ -19,7 +18,6 @@ public class LexicalAnalyzer {
 	private final char LINE_BREAK = '\n';
 
 	public LexicalAnalyzer(String filePath) {
-		printedLines = new ArrayList<Integer>();
 		linesList = new ArrayList<String>();
 		this.filePath = filePath;
 	}
@@ -45,8 +43,6 @@ public class LexicalAnalyzer {
 		if (!linesList.isEmpty()) {
 			if (currentLine < linesList.size()) {
 				line = linesList.get(currentLine);
-				line = line.replace('\t', ' ');
-				showCurrentLine(currentLine);
 
 				if (line.substring(currentColumn).matches("\\s*")) {
 					currentLine++;
@@ -239,18 +235,17 @@ public class LexicalAnalyzer {
 		return null;
 	}
 
-	private void showCurrentLine(int currentLine) {
-		if (!printedLines.contains(currentLine)) {
-			printedLines.add(currentLine);
-			System.out.println(line);
-		}
-	}
-
 	public void printTokens() {
 		Token token;
-		while (hasMoreTokens()) {
-			token = nextToken();
-			System.out.println(token.toString());
+		for (int i = 0; i < linesList.size(); i++) {
+			System.out.println(linesList.get(i));
+			while (hasMoreTokens()) {
+				if (currentLine != i) {
+					break;
+				}
+				token = nextToken();
+				System.out.println(token.toString());
+			}
 		}
 	}
 
