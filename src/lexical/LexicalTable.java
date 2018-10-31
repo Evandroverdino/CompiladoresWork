@@ -29,7 +29,7 @@ public class LexicalTable {
 		lexemesMap.put("if", TokenCategory.tIF);
 		lexemesMap.put("elif", TokenCategory.tELIF);
 		lexemesMap.put("else", TokenCategory.tELSE);
-		lexemesMap.put("when", TokenCategory.tWHILE);
+		lexemesMap.put("when", TokenCategory.tWHEN);
 		lexemesMap.put("repeater", TokenCategory.tREPEATER);
 		lexemesMap.put("true", TokenCategory.tTRUE);
 		lexemesMap.put("false", TokenCategory.tFALSE);
