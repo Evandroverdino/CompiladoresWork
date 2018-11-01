@@ -38,17 +38,17 @@ public class PrecedenceAnalyzer {
 	private void checkEndOfSentence(Token terminal) {
 		if (!OperatorsGrammar.getInstance().getOperatorsGrammarSymbols().contains(terminal.getCategory())) {
 			endOfSentence = terminal;
-		} else if (terminal.getCategory().equals(TokenCategory.PARAMBEGIN)) {
+		} else if (terminal.getCategory().equals(TokenCategory.tOP)) {
 			paramCount++;
-		} else if (terminal.getCategory().equals(TokenCategory.PARAMEND)) {
+		} else if (terminal.getCategory().equals(TokenCategory.tCP)) {
 			if (paramCount == 0) {
 				endOfSentence = terminal;
 			} else {
 				paramCount--;
 			}
-		} else if (terminal.getCategory().equals(TokenCategory.ARRAYBEGIN)) {
+		} else if (terminal.getCategory().equals(TokenCategory.tOB)) {
 			arrayCount++;
-		} else if (terminal.getCategory().equals(TokenCategory.ARRAYEND)) {
+		} else if (terminal.getCategory().equals(TokenCategory.tCB)) {
 			if (arrayCount == 0) {
 				endOfSentence = terminal;
 			} else {
@@ -77,7 +77,7 @@ public class PrecedenceAnalyzer {
 
 		System.out.println();
 		while (true) {
-			// Se pv e eof no cabeçote => Aceita!
+			// Se pv e eof no cabeï¿½ote => Aceita!
 
 			if ((operatorsStack.size() == 1) && !operatorsStack.peek().isTerminal() && (endOfSentence != null)) {
 				System.out.println();
@@ -87,7 +87,7 @@ public class PrecedenceAnalyzer {
 						|| operatorsStack.isEmpty()) {
 					tableAux = OperatorsGrammar.getInstance().getOperatorsGrammarSymbols().size();
 
-					// Se pv e terminal no cabeçote
+					// Se pv e terminal no cabeï¿½ote
 					if (operatorsStack.isEmpty()
 							|| ((operatorsStack.size() == 1) && !operatorsStack.peek().isTerminal())) {
 						tapeTerm = new Terminal(token);
@@ -95,7 +95,7 @@ public class PrecedenceAnalyzer {
 						tableValue = precedenceTable.getPrecedenceTableList().get(tableAux)
 								.get(getIndexOfTerminalSymbol(tapeTerm));
 
-					} // Se terminal no top da pilha e eof no cabeçote
+					} // Se terminal no top da pilha e eof no cabeï¿½ote
 					else {
 						if (!operatorsStack.peek().isTerminal()) {
 							stackTerm = (Terminal) operatorsStack.elementAt(operatorsStack.size() - 2);
@@ -119,9 +119,9 @@ public class PrecedenceAnalyzer {
 
 				}
 
-				// Verificação da ação
+				// Verificaï¿½ï¿½o da aï¿½ï¿½o
 
-				if (tableValue == PrecedenceTable.ELT) { // Ação ELT
+				if (tableValue == PrecedenceTable.EAT) { // Aï¿½ï¿½o ELT
 
 					operatorsStack.push(new Terminal(token));
 
@@ -130,11 +130,11 @@ public class PrecedenceAnalyzer {
 					}
 					checkEndOfSentence(token);
 
-				} else if (tableValue > PrecedenceTable.ELT) { // Ação Reduz
+				} else if (tableValue > PrecedenceTable.EAT) { // Aï¿½ï¿½o Reduz
 
-					// Se a produção for 10(9), sera necessario 2 ações pop para
+					// Se a produï¿½ï¿½o for 10(9), sera necessario 2 aï¿½ï¿½es pop para
 					// tirar o '(' e ')'
-					// referente a produção EXPRESSION = PARAMBEGIN EXPRESSION
+					// referente a produï¿½ï¿½o EXPRESSION = PARAMBEGIN EXPRESSION
 					// PARAMEND
 
 					if (tableValue >= PrecedenceTable.R11 && tableValue <= PrecedenceTable.R16) {
@@ -183,7 +183,7 @@ public class PrecedenceAnalyzer {
 								&& (operatorsStack.elementAt(operatorsStack.size() - 4).isTerminal())) {
 							Terminal termAux = (Terminal) operatorsStack.elementAt(operatorsStack.size() - 4);
 
-							if (termAux.getCategory() == TokenCategory.ID) {
+							if (termAux.getCategory() == TokenCategory.tID) {
 								tableValue = PrecedenceTable.R18;
 							}
 						}
@@ -240,9 +240,9 @@ public class PrecedenceAnalyzer {
 					for (Symbol symbol : derivation) {
 						if (symbol.isTerminal()) {
 							term = ((Terminal) symbol).getCategory();
-							if (term.getCategoryValue() >= TokenCategory.CONSTNUMINT.getCategoryValue()
-									&& term.getCategoryValue() <= TokenCategory.CONSTCCHAR.getCategoryValue()
-									|| term.equals(TokenCategory.ID)) {
+							if (term.getCategoryValue() >= TokenCategory.tCTEINT.getCategoryValue()
+									&& term.getCategoryValue() <= TokenCategory.tCTESTRING.getCategoryValue()
+									|| term.equals(TokenCategory.tID)) {
 								System.out.print(term + "(" + "\"" + currentTerm.getTerminalValue() + "\"" + ")" + " ");
 							} else {
 
@@ -255,11 +255,12 @@ public class PrecedenceAnalyzer {
 					}
 					System.out.println();
 
-				} else { // Ação ERRO
+				} else { // Aï¿½ï¿½o ERRO
 					SyntaticAnalyzer.printError(token);
 					System.exit(1);
 				}
 			}
 		}
 	}
+	
 }

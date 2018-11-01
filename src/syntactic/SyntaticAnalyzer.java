@@ -9,21 +9,21 @@ public class SyntaticAnalyzer {
 	private Grammar grammar;
 	private PredictiveAnalyzer predictiveAnalyzer;
 	private PredictiveTable predictiveTable;
+	
+	private LexicalAnalyzer lexicalAnalyzer;
 
 	public SyntaticAnalyzer(LexicalAnalyzer lexicalAnalyzer) {
-
+		this.lexicalAnalyzer = lexicalAnalyzer;
 		grammar = Grammar.getInstance();
 		predictiveTable = new PredictiveTable();
-		predictiveAnalyzer = new PredictiveAnalyzer(grammar, predictiveTable,
-				lexicalAnalyzer);
-
-		// TEST
-		// printTokens(lexicalAnalyzer);
-
+		predictiveAnalyzer = new PredictiveAnalyzer(grammar, predictiveTable, lexicalAnalyzer);
+	}
+	
+	public void analyze() {
+		predictiveAnalyzer.predictiveAnalyze();
 	}
 
-	// TEST
-	private void printTokens(LexicalAnalyzer lexicalAnalyzer) {
+	/*public void printTokens(LexicalAnalyzer lexicalAnalyzer) {		
 		Token token;
 		while (lexicalAnalyzer.hasMoreTokens()) {
 			token = lexicalAnalyzer.nextToken();
@@ -32,15 +32,12 @@ public class SyntaticAnalyzer {
 		System.out.println();
 		System.out.println();
 		lexicalAnalyzer.readFile();
-	}
-
-	public void analyze() {
-		predictiveAnalyzer.predictiveAnalyze();
-	}
+	}*/
 
 	public static void printError(Token token) {
 		System.err.println("Erro no token " + token.getCategory() + "("
 				+ token.getValue() + ")," + " na linha " + token.getLine()
 				+ " e coluna " + token.getColumn() + ".");
 	}
+	
 }

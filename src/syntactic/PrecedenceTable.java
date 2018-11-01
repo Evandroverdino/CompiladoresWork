@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import syntactic.grammar.OperatorsGrammar;
 
 public class PrecedenceTable {
+	
 	private OperatorsGrammar operatorsGrammar;
 	private ArrayList<Integer> lineTable;
 	private ArrayList<ArrayList<Integer>> precedenceTableList;
@@ -14,9 +15,9 @@ public class PrecedenceTable {
 	public static final int ERROR = -1;
 	
 	//Empilha e le proximo token
-	public static final int ELT = 0;
+	public static final int EAT = 0;
 	
-	//Reduções
+	//Reduï¿½ï¿½es
 	public static final int R1 = 1;
 	public static final int R2 = 2;
 	public static final int R3 = 3;
@@ -63,25 +64,24 @@ public class PrecedenceTable {
 	}
 
 	private void loadTable() {
-
-		// Relação 'oparitadit' x (todos os terminais)
+		// Relacao 'tOPA' x (todos os terminais)
 		lineTable.add(R5);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(R5);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R5);
 		lineTable.add(R5);
 		lineTable.add(R5);
 		lineTable.add(R5);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(R5);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R5);
@@ -89,24 +89,24 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'oparitmul' x (todos os terminais)
+		// Relacao 'tOPM' x (todos os terminais)
 		lineTable.add(R6);
 		lineTable.add(R6);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R6);
 		lineTable.add(R6);
 		lineTable.add(R6);
 		lineTable.add(R6);
 		lineTable.add(R6);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R6);
@@ -114,24 +114,24 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'oparitexp' x (todos os terminais)
+		// Relacao 'tOPE' x (todos os terminais)
 		lineTable.add(R9);
 		lineTable.add(R9);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
 		lineTable.add(R9);
 		lineTable.add(R9);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
 		lineTable.add(R9);
 		lineTable.add(R9);
 		lineTable.add(R9);
 		lineTable.add(R9);
 		lineTable.add(R9);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R9);
@@ -139,24 +139,24 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'opnegun' x (todos os terminais)
+		// Relacao 'tOPU' x (todos os terminais)
 		lineTable.add(R7);
 		lineTable.add(R7);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R7);
 		lineTable.add(R7);
 		lineTable.add(R7);
 		lineTable.add(R7);
 		lineTable.add(R7);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R7);
@@ -164,24 +164,24 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'opneglogic' x (todos os terminais)
+		// Relacao 'tNOT' x (todos os terminais)
 		lineTable.add(R8);
 		lineTable.add(R8);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R8);
 		lineTable.add(R8);
 		lineTable.add(R8);
 		lineTable.add(R8);
 		lineTable.add(R8);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R8);
@@ -189,32 +189,32 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'parambegin' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'tOP' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'paramend' x (todos os terminais)
+		// Relacao 'tCP' x (todos os terminais)
 		lineTable.add(R10);
 		lineTable.add(R10);
 		lineTable.add(R10);
@@ -239,48 +239,48 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'oplogicor' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'tOR' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R1);
 		lineTable.add(R1);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R1);
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'oplogicand' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'tAND' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R2);
 		lineTable.add(R2);
 		lineTable.add(R2);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R2);
@@ -288,24 +288,24 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'oprel1' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'tORC' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R4);
 		lineTable.add(R4);
 		lineTable.add(R4);
 		lineTable.add(R4);
 		lineTable.add(R4);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(R4);
@@ -313,32 +313,32 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'oprel2' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'tORE' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R3);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(R3);
-		lineTable.add(R3);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R3);
 		lineTable.add(R3);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(R3);
+		lineTable.add(R3);
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'constnumint' x (todos os terminais)
+		// Relacao 'tCTEINT' x (todos os terminais)
 		lineTable.add(R11);
 		lineTable.add(R11);
 		lineTable.add(R11);
@@ -363,7 +363,7 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'constnumdec' x (todos os terminais)
+		// Relacao 'tCTEFLOAT' x (todos os terminais)
 		lineTable.add(R12);
 		lineTable.add(R12);
 		lineTable.add(R12);
@@ -388,7 +388,32 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'constlogic' x (todos os terminais)
+		// Relacao 'tTRUE' x (todos os terminais)
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(ERROR);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(ERROR);
+		lineTable.add(R13);
+		lineTable.add(R13);
+		precedenceTableList.add(lineTable);
+		lineTable = new ArrayList<Integer>();
+		
+		// Relacao 'tFALSE' x (todos os terminais)
 		lineTable.add(R13);
 		lineTable.add(R13);
 		lineTable.add(R13);
@@ -413,7 +438,7 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'constchar' x (todos os terminais)
+		// Relacao 'tCTECHAR' x (todos os terminais)
 		lineTable.add(R14);
 		lineTable.add(R14);
 		lineTable.add(R14);
@@ -438,7 +463,7 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'constcchar' x (todos os terminais)
+		// Relacao 'tCTESTRING' x (todos os terminais)
 		lineTable.add(R15);
 		lineTable.add(R15);
 		lineTable.add(R15);
@@ -463,13 +488,13 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'id' x (todos os terminais)
+		// Relacao 'tID' x (todos os terminais)
 		lineTable.add(R16);
 		lineTable.add(R16);
 		lineTable.add(R16);
 		lineTable.add(R16);
 		lineTable.add(R16);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
 		lineTable.add(R16);
 		lineTable.add(R16);
 		lineTable.add(R16);
@@ -481,39 +506,39 @@ public class PrecedenceTable {
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R16);
 		lineTable.add(R16);
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'arrayBegin' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'tOB' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'arrayEnd' x (todos os terminais)
+		// Relacao 'tCB' x (todos os terminais)
 		lineTable.add(R17); 
 		lineTable.add(R17);
 		lineTable.add(R17);
@@ -538,24 +563,24 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'sep1' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'tSPTR' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(R19);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
@@ -563,24 +588,24 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relação 'pilha vazia' x (todos os terminais)
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		// Relacao 'pilha vazia' x (todos os terminais)
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
-		lineTable.add(ELT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
+		lineTable.add(EAT);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
 		lineTable.add(ERROR);
@@ -588,4 +613,5 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 	}
+	
 }

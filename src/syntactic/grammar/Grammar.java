@@ -13,10 +13,8 @@ public class Grammar {
 	public static final int EXPRESSION = 75;
 	
 	private Grammar() { 
-		
 		grammarMap = new ArrayList<Derivation>();
 		loadGrammar();
-		
 	}
 
     public static Grammar getInstance() {
@@ -32,7 +30,6 @@ public class Grammar {
 	}
 	
 	private void loadGrammar() {
-		
 		// (1)FUNCTIONS MAIN
 		derivationAux = new Derivation();
 		derivationAux.addDerivationSymbols(
@@ -52,7 +49,7 @@ public class Grammar {
 		// (3)Epsilon
 		grammarAddDerivation(null);
 
-		// (4)'tMAIN' 'tOP' 'tCP' 'tEmpty' ESCOPE
+		// (4)'tMAIN' 'tOP' 'tCP' 'tEMPTY' ESCOPE
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tMAIN), 
 				new Terminal(TokenCategory.tOP),
@@ -97,20 +94,20 @@ public class Grammar {
 		derivationAux.addSymbol(new Terminal(TokenCategory.tINT));		
 		grammarAddDerivation(derivationAux);
 		
-		// (13)'tBOOL'
-		derivationAux.addSymbol(new Terminal(TokenCategory.tBOOL));		
+		// (12)'tFLOAT'
+		derivationAux.addSymbol(new Terminal(TokenCategory.tFLOAT));		
 		grammarAddDerivation(derivationAux);
 		
-		// (14)'tCHAR'
+		// (13)'tCHAR'
 		derivationAux.addSymbol(new Terminal(TokenCategory.tCHAR));		
 		grammarAddDerivation(derivationAux);
 
-		// (15)'tSTRING'
+		// (14)'tSTRING'
 		derivationAux.addSymbol(new Terminal(TokenCategory.tSTRING));		
 		grammarAddDerivation(derivationAux);
 
-		// (16)'tFLOAT'
-		derivationAux.addSymbol(new Terminal(TokenCategory.tFLOAT));		
+		// (15)'tBOOL'
+		derivationAux.addSymbol(new Terminal(TokenCategory.tBOOL));		
 		grammarAddDerivation(derivationAux);
 
 		// (17)'tEMPTY'
@@ -138,10 +135,10 @@ public class Grammar {
 				new NonTerminal(NonTerminalName.NAMEEXT));
 		grammarAddDerivation(derivationAux);
 		
-		// (22)'tOB' 'tCTEINT' 'tCB'
+		// (22)'tOB' EXPRESSION 'tCB'
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tOB),
-				new Terminal(TokenCategory.tCTEINT),
+				new NonTerminal(NonTerminalName.EXPRESSION),
 				new Terminal(TokenCategory.tCB));
 		grammarAddDerivation(derivationAux);
 		
@@ -155,9 +152,10 @@ public class Grammar {
 				new Terminal(TokenCategory.tCK));
 		grammarAddDerivation(derivationAux);
 		
-		// (25)CMD COMMANDS 
+		// (25)CMD 'tSCO' COMMANDS 
 		derivationAux.addDerivationSymbols(
 				new NonTerminal(NonTerminalName.CMD),
+				new Terminal(TokenCategory.tSCO),
 				new NonTerminal(NonTerminalName.COMMANDS));
 		grammarAddDerivation(derivationAux);
 		
@@ -212,14 +210,14 @@ public class Grammar {
 		derivationAux.addSymbol(new NonTerminal(NonTerminalName.FUNCCALL));
 		grammarAddDerivation(derivationAux);
 		
-		// (39)NAMEEXT 'tATR' VALUE 
+		// (39)NAME 'tATR' VALUE 
 		derivationAux.addDerivationSymbols(
-				new NonTerminal(NonTerminalName.NAMEEXT),
+				new NonTerminal(NonTerminalName.NAME),
 				new Terminal(TokenCategory.tATR),
 				new NonTerminal(NonTerminalName.VALUE));
 		grammarAddDerivation(derivationAux);
 		
-		// (40)ATTRIBUTION
+		// (40)ARRAY | EXPRESSION
 		derivationAux.addSymbol(new NonTerminal(NonTerminalName.ARRAY));
 		grammarAddDerivation(derivationAux);
 		
@@ -337,12 +335,10 @@ public class Grammar {
 		// (63)Epsilon
 		grammarAddDerivation(null);
 		
-		// (64)'tREAD' 'tOP' TYPE 'tSPTR' NAME 'tCP'
+		// (64)'tREAD' 'tOP' NAME 'tCP'
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tREAD),
 				new Terminal(TokenCategory.tOP),
-				new NonTerminal(NonTerminalName.TYPE),
-				new Terminal(TokenCategory.tSPTR),
 				new NonTerminal(NonTerminalName.NAME),
 				new Terminal(TokenCategory.tCP));
 		grammarAddDerivation(derivationAux);
@@ -354,7 +350,7 @@ public class Grammar {
 				new NonTerminal(NonTerminalName.ELSE));
 		grammarAddDerivation(derivationAux);
 		
-		// (66)�'tIF' 'tOP' EXPRESSION 'tCP' 'tOK' COMMANDS 'tCK'
+		// (66)'tIF' 'tOP' EXPRESSION 'tCP' 'tOK' COMMANDS 'tCK'
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tIF),
 				new Terminal(TokenCategory.tOP),
@@ -402,25 +398,23 @@ public class Grammar {
 				new Terminal(TokenCategory.tCK));
 		grammarAddDerivation(derivationAux);
 		
-		// (72)'tREPEATER' 'tOP' 'tID' ATTRIBUTION 'tSCO' EXPRESSION 'tSCO' 'tID' ATTRIBUTION 'tCP'
+		// (72)'tREPEATER' 'tOP' ATTRIBUTION 'tSCO' EXPRESSION 'tSCO' EXPRESSION 'tCP'
 	    // 'tOK' COMMANDS 'tCK
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tREPEATER), 
 				new Terminal(TokenCategory.tOP),
-				new Terminal(TokenCategory.tID),
 				new NonTerminal(NonTerminalName.ATTRIBUTION), 
 				new Terminal(TokenCategory.tSCO), 
 				new NonTerminal(NonTerminalName.EXPRESSION), 
 				new Terminal(TokenCategory.tSCO),
-				new Terminal(TokenCategory.tID),
-				new NonTerminal(NonTerminalName.ATTRIBUTION), 
+				new NonTerminal(NonTerminalName.EXPRESSION), 
 				new Terminal(TokenCategory.tCP), 
 				new Terminal(TokenCategory.tOK), 
 				new NonTerminal(NonTerminalName.COMMANDS), 
 				new Terminal(TokenCategory.tCK));
 		grammarAddDerivation(derivationAux);
 		
-		// (73)'tRETURN' RETURNEXt
+		// (73)'tRETURN' RETURNEXT
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tRETURN), 
 				new NonTerminal(NonTerminalName.RETURNEXT));
