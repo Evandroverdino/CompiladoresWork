@@ -20,8 +20,6 @@ public class LexicalTable {
 		lexemesMap.put("char", TokenCategory.tCHAR);
 		lexemesMap.put("string", TokenCategory.tSTRING);
 		lexemesMap.put("bool", TokenCategory.tBOOL);
-		lexemesMap.put("module", TokenCategory.tMODULE);
-		lexemesMap.put("fun", TokenCategory.tFUN);
 		lexemesMap.put("return", TokenCategory.tRETURN);
 		lexemesMap.put("main", TokenCategory.tMAIN);
 		lexemesMap.put("read", TokenCategory.tREAD);
@@ -31,8 +29,8 @@ public class LexicalTable {
 		lexemesMap.put("else", TokenCategory.tELSE);
 		lexemesMap.put("when", TokenCategory.tWHEN);
 		lexemesMap.put("repeater", TokenCategory.tREPEATER);
-		lexemesMap.put("true", TokenCategory.tTRUE);
-		lexemesMap.put("false", TokenCategory.tFALSE);
+		lexemesMap.put("true", TokenCategory.tCTEBOOL);
+		lexemesMap.put("false", TokenCategory.tCTEBOOL);
 		lexemesMap.put("null", TokenCategory.tNULL);
 
 		// Operadores
@@ -42,16 +40,19 @@ public class LexicalTable {
 		lexemesMap.put("*", TokenCategory.tOPM);
 		lexemesMap.put("/", TokenCategory.tOPM);
 		lexemesMap.put("^", TokenCategory.tOPE);
-		lexemesMap.put("=", TokenCategory.tATR);
+		
 		lexemesMap.put("<", TokenCategory.tORC);
 		lexemesMap.put(">", TokenCategory.tORC);
 		lexemesMap.put("<=", TokenCategory.tORC);
 		lexemesMap.put(">=", TokenCategory.tORC);
 		lexemesMap.put("==", TokenCategory.tORE);
 		lexemesMap.put("!=", TokenCategory.tORE);
+		
 		lexemesMap.put("and", TokenCategory.tAND);
 		lexemesMap.put("or", TokenCategory.tOR);
 		lexemesMap.put("~", TokenCategory.tNOT);
+		
+		lexemesMap.put("=", TokenCategory.tATR);
 		lexemesMap.put("++", TokenCategory.tCONCAT);
 
 		// Definidores de escopo
@@ -59,7 +60,7 @@ public class LexicalTable {
 		lexemesMap.put("{", TokenCategory.tOK);
 		lexemesMap.put("}", TokenCategory.tCK);
 		
-		// Definidor de coment�rio
+		// Definidor de comentario
 
 		lexemesMap.put("#", TokenCategory.tCOMMENT);
 
@@ -73,13 +74,12 @@ public class LexicalTable {
 		// Separadores
 
 		lexemesMap.put(",", TokenCategory.tSPTR);
-		lexemesMap.put(":", TokenCategory.tCO);
 
-		// Terminador de instru��o
+		// Terminador de instrucao
 
 		lexemesMap.put(";", TokenCategory.tSCO);
 
-		// Lista de s�mbolos
+		// Lista de simbolos
 		
 		symbolList.add(' ');
 		symbolList.add('.');
@@ -113,4 +113,5 @@ public class LexicalTable {
 		symbolList.add('^');
 		symbolList.add('|');
 	}
+	
 }

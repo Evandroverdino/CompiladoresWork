@@ -37,14 +37,13 @@ public class OperatorsGrammar {
 		operatorsGrammarSymbols.add(TokenCategory.tORE);// 10
 		operatorsGrammarSymbols.add(TokenCategory.tCTEINT);// 11
 		operatorsGrammarSymbols.add(TokenCategory.tCTEFLOAT);// 12
-		operatorsGrammarSymbols.add(TokenCategory.tTRUE);// 13
-		operatorsGrammarSymbols.add(TokenCategory.tFALSE);// 14
-		operatorsGrammarSymbols.add(TokenCategory.tCTECHAR);// 15
-		operatorsGrammarSymbols.add(TokenCategory.tCTESTRING);// 16
-		operatorsGrammarSymbols.add(TokenCategory.tID);// 17
-		operatorsGrammarSymbols.add(TokenCategory.tOB);// 18
-		operatorsGrammarSymbols.add(TokenCategory.tCB);// 19
-		operatorsGrammarSymbols.add(TokenCategory.tSPTR);// 20
+		operatorsGrammarSymbols.add(TokenCategory.tCTEBOOL);// 13
+		operatorsGrammarSymbols.add(TokenCategory.tCTECHAR);// 14
+		operatorsGrammarSymbols.add(TokenCategory.tCTESTRING);// 15
+		operatorsGrammarSymbols.add(TokenCategory.tID);// 16
+		operatorsGrammarSymbols.add(TokenCategory.tOB);// 17
+		operatorsGrammarSymbols.add(TokenCategory.tCB);// 18
+		operatorsGrammarSymbols.add(TokenCategory.tSPTR);// 19
 	}
 
 	public static OperatorsGrammar getInstance() {
@@ -155,32 +154,27 @@ public class OperatorsGrammar {
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tCTEFLOAT));
 		operatorGrammarArray.add(operatorDerivation);
 
-		// (12)EXPRESSION = tTRUE
+		// (12)EXPRESSION = tCTEBOOL
 		operatorDerivation = new Derivation();
-		operatorDerivation.addSymbol(new Terminal(TokenCategory.tTRUE));
-		operatorGrammarArray.add(operatorDerivation);
-		
-		// (13)EXPRESSION = tTRUE
-		operatorDerivation = new Derivation();
-		operatorDerivation.addSymbol(new Terminal(TokenCategory.tTRUE));
+		operatorDerivation.addSymbol(new Terminal(TokenCategory.tCTEBOOL));
 		operatorGrammarArray.add(operatorDerivation);
 
-		// (14)EXPRESSION = tCTECHAR
+		// (13)EXPRESSION = tCTECHAR
 		operatorDerivation = new Derivation();
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tCTECHAR));
 		operatorGrammarArray.add(operatorDerivation);
 
-		// (15)EXPRESSION = tCTESTRING
+		// (14)EXPRESSION = tCTESTRING
 		operatorDerivation = new Derivation();
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tCTESTRING));
 		operatorGrammarArray.add(operatorDerivation);
 
-		// (16)EXPRESSION = tID
+		// (15)EXPRESSION = tID
 		operatorDerivation = new Derivation();
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tID));
 		operatorGrammarArray.add(operatorDerivation);
 
-		// (17)EXPRESSION = tID tOB EXPRESSION tCB
+		// (16)EXPRESSION = tID tOB EXPRESSION tCB
 		operatorDerivation = new Derivation();
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tID));
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tOB));
@@ -189,7 +183,7 @@ public class OperatorsGrammar {
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tCB));
 		operatorGrammarArray.add(operatorDerivation);
 
-		// (18)EXPRESSION = tID tOP EXPRESSION tCP
+		// (17)EXPRESSION = tID tOP EXPRESSION tCP
 		operatorDerivation = new Derivation();
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tID));
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tOP));
@@ -198,7 +192,7 @@ public class OperatorsGrammar {
 		operatorDerivation.addSymbol(new Terminal(TokenCategory.tCP));
 		operatorGrammarArray.add(operatorDerivation);
 
-		// (19)EXPRESSION = EXPRESSION tSPTR EXPRESSION
+		// (18)EXPRESSION = EXPRESSION tSPTR EXPRESSION
 		operatorDerivation = new Derivation();
 		operatorDerivation
 				.addSymbol(new NonTerminal(NonTerminalName.EXPRESSION));

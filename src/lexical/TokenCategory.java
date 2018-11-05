@@ -2,14 +2,51 @@ package lexical;
 
 public enum TokenCategory {
 
-	tID(1), tEMPTY(2), tINT(3), tFLOAT(4), tCHAR(5), tSTRING(6), tBOOL(7), tMODULE(8), tFUN(9), tRETURN(10), tMAIN(11),
-	tREAD(12), tSHOW(13), tIF(14), tELIF(15), tELSE(16), tWHEN(17), tREPEATER(18), tTRUE(19), tFALSE(20), tCTEINT(21),
-	tCTEFLOAT(22), tCTECHAR(23), tCTESTRING(24), tSPTR(25), tCO(26), tSCO(27), tOK(28), tCK(29), tOP(30), tCP(31),
-	tOB(32), tCB(33), tOPA(34), tOPM(35), tOPE(36), tOPU(37), tATR(38), tORC(39), tORE(40), tAND(41), tOR(42), tNOT(43),
-	tCONCAT(44), tNULL(45), tCOMMENT(46);
+	tMAIN(1),
+	tID(2), 
+	tEMPTY(3), 
+	tINT(4),
+	tBOOL(6),
+	tCHAR(7), 
+	tSTRING(8),
+	tFLOAT(9),
+	tOK(10), 
+	tCK(11),
+	tOP(12), 
+	tCP(13),
+	tOB(14), 
+	tCB(15),
+	tCOMMENT(16),
+	tSCO(17),
+	tSPTR(18),
+	tCTEINT(20),
+	tCTEFLOAT(21), 
+	tCTEBOOL(22), 
+	tCTECHAR(23), 
+	tCTESTRING(24),
+	tIF(25),  
+	tELSE(26),
+	tELIF(27),
+	tREPEATER(28),
+	tWHEN(30),
+	tSHOW(31), 
+	tREAD(32), 
+	tRETURN(33),
+	tAND(34), 
+	tOR(35),
+	tNOT(36),
+	tOPA(37), 
+	tOPM(38), 
+	tOPE(39),
+	tOPU(40), 
+	tORC(41), 
+	tORE(42), 	
+	tATR(43), 
+	tCONCAT(44),	 
+	tNULL(45);	
 
 	private int value;
-
+	
 	private TokenCategory(int value) {
 		this.value = value;
 	}
@@ -17,4 +54,5 @@ public enum TokenCategory {
 	public int getCategoryValue() {
 		return value;
 	}
+	
 }

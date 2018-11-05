@@ -1,53 +1,50 @@
-module ShellSort {
-	fun int[] shellSort(int[] values) {
-		int c;
-		int j;
-		int n = length(values);
-		int h = 1;
+shellSort(int[] values) int[] {
+	int c;
+	int j;
+	int n = length(values);
+	int h = 1;
 
-		if(h < n) {
-			h = h * 3 + 1;
-		}
-		h = h / 3;
+	if(h < n) {
+		h = h * 3 + 1;
+	};
+	h = h / 3;
 
-		if(n > 2) {
-			repeater(int i = h, n, 1) {
-				c = values[i];
-				j = i;
+	if(n > 2) {
+		repeater(int i = h, n, 1) {
+			c = values[i];
+			j = i;
 
-				if(j >= h and values[j - h] > c) {
-					values[j] = values[j - h];
-					j = j - h;
-				}
-				values[j] = c;
-			}
+			if(j >= h and values[j - h] > c) {
+				values[j] = values[j - h];
+				j = j - h;
+			};
+			values[j] = c;
+		};
 
-			h = h / 2;
-		}
+		h = h / 2;
+	};
 
-		return values;
-	}
+	return values;
+};
 
-	fun int main() {
-		int i = 0;
-		int[] values;
+main() empty {
+	int i = 0;
+	int[] values;
 
-		while(read() != EOF) {
-			values[ i ] = lastValueRead();
-			i + 1;
-		}
+	while(read() != EOF) {
+		values[ i ] = lastValueRead();
+		i + 1;
+	};
 
-		repeater(i = 0; length(values); 1) {
-			show(values[ i ]);
-			show("\n");
-		}
+	repeater(i = 0; length(values); 1) {
+		show(values[ i ]);
+		show("\n");
+	};
 
-		int[] array = shellsort(values);
+	int[] array = shellsort(values);
 
-		repeater(i = 0; length(values); 1) {
-			show(array[i]);
-			show("\n");
-		}
-		return 0;
-	}
-}
+	repeater(i = 0; length(values); 1) {
+		show(array[i]);
+		show("\n");
+	};
+};

@@ -9,11 +9,8 @@ public class SyntaticAnalyzer {
 	private Grammar grammar;
 	private PredictiveAnalyzer predictiveAnalyzer;
 	private PredictiveTable predictiveTable;
-	
-	private LexicalAnalyzer lexicalAnalyzer;
 
 	public SyntaticAnalyzer(LexicalAnalyzer lexicalAnalyzer) {
-		this.lexicalAnalyzer = lexicalAnalyzer;
 		grammar = Grammar.getInstance();
 		predictiveTable = new PredictiveTable();
 		predictiveAnalyzer = new PredictiveAnalyzer(grammar, predictiveTable, lexicalAnalyzer);

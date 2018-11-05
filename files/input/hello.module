@@ -1,6 +1,3 @@
-module HelloWorld {
-	fun int main() {
-		show("Hello World =)");
-		return 0;
-	}
-}
+main() empty {
+	show("Hello World =)");
+};

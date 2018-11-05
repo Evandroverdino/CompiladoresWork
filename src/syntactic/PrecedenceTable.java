@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import syntactic.grammar.OperatorsGrammar;
 
 public class PrecedenceTable {
-	
 	private OperatorsGrammar operatorsGrammar;
 	private ArrayList<Integer> lineTable;
 	private ArrayList<ArrayList<Integer>> precedenceTableList;
@@ -17,7 +16,7 @@ public class PrecedenceTable {
 	//Empilha e le proximo token
 	public static final int EAT = 0;
 	
-	//Redu��es
+	//Reducoes
 	public static final int R1 = 1;
 	public static final int R2 = 2;
 	public static final int R3 = 3;
@@ -64,6 +63,7 @@ public class PrecedenceTable {
 	}
 
 	private void loadTable() {
+
 		// Relacao 'tOPA' x (todos os terminais)
 		lineTable.add(R5);
 		lineTable.add(EAT);
@@ -388,32 +388,7 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 
-		// Relacao 'tTRUE' x (todos os terminais)
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(ERROR);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
-		lineTable.add(ERROR);
-		lineTable.add(R13);
-		lineTable.add(R13);
-		precedenceTableList.add(lineTable);
-		lineTable = new ArrayList<Integer>();
-		
-		// Relacao 'tFALSE' x (todos os terminais)
+		// Relacao 'tCTEBOOL' x (todos os terminais)
 		lineTable.add(R13);
 		lineTable.add(R13);
 		lineTable.add(R13);
@@ -613,5 +588,4 @@ public class PrecedenceTable {
 		precedenceTableList.add(lineTable);
 		lineTable = new ArrayList<Integer>();
 	}
-	
 }

@@ -1,10 +1,9 @@
 package syntactic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
-import lexical.LexicalAnalyzer;
-import lexical.Token;
-import lexical.TokenCategory;
 import syntactic.grammar.Derivation;
 import syntactic.grammar.Grammar;
 import syntactic.grammar.NonTerminal;
@@ -12,6 +11,9 @@ import syntactic.grammar.NonTerminalName;
 import syntactic.grammar.OperatorsGrammar;
 import syntactic.grammar.Symbol;
 import syntactic.grammar.Terminal;
+import lexical.LexicalAnalyzer;
+import lexical.Token;
+import lexical.TokenCategory;
 
 public class PredictiveAnalyzer {
 
@@ -23,6 +25,7 @@ public class PredictiveAnalyzer {
 	private Stack<Symbol> stack;
 	private Derivation derivation;
 
+	// TODO
 	public PredictiveAnalyzer(Grammar grammar, PredictiveTable predictiveTable,
 			LexicalAnalyzer lexicalAnalyzer) {
 
@@ -36,6 +39,7 @@ public class PredictiveAnalyzer {
 	}
 
 	public void predictiveAnalyze() {
+
 		Symbol topSymbol;
 		Token token = new Token();
 		Terminal terminal;
@@ -47,6 +51,7 @@ public class PredictiveAnalyzer {
 		int rightCountAux = 0;
 
 		if (lexicalAnalyzer.hasMoreTokens()) {
+
 			token = lexicalAnalyzer.nextToken();
 
 			terminal = new Terminal(token);
@@ -54,9 +59,11 @@ public class PredictiveAnalyzer {
 			prodCount.push(1);
 
 			while (!stack.isEmpty()) {
+
 				topSymbol = stack.peek();
 
 				if (topSymbol.isTerminal()) {
+
 					if (topSymbol.getValue() == terminal.getValue()) {
 						stack.pop();
 						if (lexicalAnalyzer.hasMoreTokens()) {
@@ -70,6 +77,7 @@ public class PredictiveAnalyzer {
 					}
 
 				} else {
+
 					topNonTerminal = (NonTerminal) topSymbol;
 
 					if (topNonTerminal.getName() == NonTerminalName.EXPRESSION) {
@@ -81,13 +89,17 @@ public class PredictiveAnalyzer {
 
 						} else {
 							if (precedenceAnalyzer.precedenceAnalysis(token)) {
+
 								stack.pop();
 								topSymbol = stack.peek();
 
-								terminal = new Terminal(precedenceAnalyzer.getEndOfSentence());
+								terminal = new Terminal(
+										precedenceAnalyzer.getEndOfSentence());
+
 							}
 						}
 					} else {
+
 						derivationNumber = null;
 
 						if (topNonTerminal.getName() == NonTerminalName.VALUE
@@ -130,7 +142,8 @@ public class PredictiveAnalyzer {
 									stack.push(symb);
 								}
 
-								for (int i = 0; i < derivation.getSymbolsList().size(); i++) {
+								for (int i = 0; i < derivation.getSymbolsList()
+										.size(); i++) {
 									symb = derivation.getSymbolsList().get(i);
 									if (symb.isTerminal()) {
 										term = (Terminal) symb;
@@ -176,5 +189,4 @@ public class PredictiveAnalyzer {
 			}
 		}
 	}
-	
 }
