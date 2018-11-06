@@ -13,12 +13,12 @@ fibonacci(int limit) empty {
 	
 	when(count < limit) {
 		if(count < 2) {
-			show("1 ");
+			show("1, ");
 		} else {
 			fib3 = fib1 + fib2;
 			fib1 = fib2;
 			fib2 = fib3;
-			show(fib3 ++ " ");
+			show(fib3 ++ ", ");
 		};
 		count = count + 1;
 	};
