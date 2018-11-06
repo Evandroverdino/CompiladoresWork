@@ -77,7 +77,7 @@ public class PrecedenceAnalyzer {
 
 		System.out.println();
 		while (true) {
-			// Se pv e eof no cabe�ote => Aceita!
+			// Se pv e eof no cabecote => Aceita!
 
 			if ((operatorsStack.size() == 1) && !operatorsStack.peek().isTerminal() && (endOfSentence != null)) {
 				System.out.println();
@@ -87,7 +87,7 @@ public class PrecedenceAnalyzer {
 						|| operatorsStack.isEmpty()) {
 					tableAux = OperatorsGrammar.getInstance().getOperatorsGrammarSymbols().size();
 
-					// Se pv e terminal no cabe�ote
+					// Se pv e terminal no cabecote
 					if (operatorsStack.isEmpty()
 							|| ((operatorsStack.size() == 1) && !operatorsStack.peek().isTerminal())) {
 						tapeTerm = new Terminal(token);
@@ -95,7 +95,7 @@ public class PrecedenceAnalyzer {
 						tableValue = precedenceTable.getPrecedenceTableList().get(tableAux)
 								.get(getIndexOfTerminalSymbol(tapeTerm));
 
-					} // Se terminal no top da pilha e eof no cabe�ote
+					} // Se terminal no top da pilha e eof no cabecote
 					else {
 						if (!operatorsStack.peek().isTerminal()) {
 							stackTerm = (Terminal) operatorsStack.elementAt(operatorsStack.size() - 2);
@@ -119,9 +119,9 @@ public class PrecedenceAnalyzer {
 
 				}
 
-				// Verifica��o da a��o
+				// Verificacao da acao
 
-				if (tableValue == PrecedenceTable.EAT) { // A��o ELT
+				if (tableValue == PrecedenceTable.EAT) { // Acao ELT
 
 					operatorsStack.push(new Terminal(token));
 
@@ -130,11 +130,11 @@ public class PrecedenceAnalyzer {
 					}
 					checkEndOfSentence(token);
 
-				} else if (tableValue > PrecedenceTable.EAT) { // A��o Reduz
+				} else if (tableValue > PrecedenceTable.EAT) { // Acao Reduz
 
-					// Se a produ��o for 10(9), sera necessario 2 a��es pop para
+					// Se a producao for 10(9), sera necessario 2 acoes pop para
 					// tirar o '(' e ')'
-					// referente a produ��o EXPRESSION = PARAMBEGIN EXPRESSION
+					// referente a producao EXPRESSION = PARAMBEGIN EXPRESSION
 					// PARAMEND
 
 					if (tableValue >= PrecedenceTable.R11 && tableValue <= PrecedenceTable.R16) {
@@ -255,7 +255,7 @@ public class PrecedenceAnalyzer {
 					}
 					System.out.println();
 
-				} else { // A��o ERRO
+				} else { // Acao ERRO
 					SyntaticAnalyzer.printError(token);
 					System.exit(1);
 				}
