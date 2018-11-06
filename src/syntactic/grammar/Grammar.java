@@ -148,11 +148,12 @@ public class Grammar {
 		// (23)Epsilon
 		grammarAddDerivation(null);
 		
-		// (24)'tOK' COMMANDS 'tCK'
+		// (24)'tOK' COMMANDS 'tCK' 'tSCO'
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tOK),
 				new NonTerminal(NonTerminalName.COMMANDS),
-				new Terminal(TokenCategory.tCK));
+				new Terminal(TokenCategory.tCK),
+				new Terminal(TokenCategory.tSCO));
 		grammarAddDerivation(derivationAux);
 		
 		// (25)CMD 'tSCO' COMMANDS 
@@ -216,9 +217,9 @@ public class Grammar {
 		derivationAux.addSymbol(new NonTerminal(NonTerminalName.FUNCCALL));
 		grammarAddDerivation(derivationAux);
 		
-		// (39)NAME 'tATR' VALUE 
+		// (39)NAMEEXT 'tATR' VALUE 
 		derivationAux.addDerivationSymbols(
-				new NonTerminal(NonTerminalName.NAME),
+				new NonTerminal(NonTerminalName.NAMEEXT),
 				new Terminal(TokenCategory.tATR),
 				new NonTerminal(NonTerminalName.VALUE));
 		grammarAddDerivation(derivationAux);
@@ -403,12 +404,12 @@ public class Grammar {
 		// (71)
 		grammarAddDerivation(null);
 		
-		// (72)'tREPEATER' 'tOP' ATTRIBUTION 'tSCO' EXPRESSION 'tSCO' EXPRESSION 'tCP'
+		// (72)'tREPEATER' 'tOP' EXPRESSION 'tSCO' EXPRESSION 'tSCO' EXPRESSION 'tCP'
 	    // 'tOK' COMMANDS 'tCK
 		derivationAux.addDerivationSymbols(
 				new Terminal(TokenCategory.tREPEATER), 
 				new Terminal(TokenCategory.tOP),
-				new NonTerminal(NonTerminalName.ATTRIBUTION), 
+				new NonTerminal(NonTerminalName.EXPRESSION), 
 				new Terminal(TokenCategory.tSCO), 
 				new NonTerminal(NonTerminalName.EXPRESSION), 
 				new Terminal(TokenCategory.tSCO),
