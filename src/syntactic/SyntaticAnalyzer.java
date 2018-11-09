@@ -1,8 +1,8 @@
 package syntactic;
 
-import syntactic.grammar.Grammar;
 import lexical.LexicalAnalyzer;
 import lexical.Token;
+import syntactic.grammar.Grammar;
 
 public class SyntaticAnalyzer {
 
@@ -19,17 +19,6 @@ public class SyntaticAnalyzer {
 	public void analyze() {
 		predictiveAnalyzer.predictiveAnalyze();
 	}
-
-	/*public void printTokens(LexicalAnalyzer lexicalAnalyzer) {		
-		Token token;
-		while (lexicalAnalyzer.hasMoreTokens()) {
-			token = lexicalAnalyzer.nextToken();
-			System.out.println(token.toString());
-		}
-		System.out.println();
-		System.out.println();
-		lexicalAnalyzer.readFile();
-	}*/
 
 	public static void printError(Token token) {
 		System.err.println("Erro no token " + token.getCategory() + "("
