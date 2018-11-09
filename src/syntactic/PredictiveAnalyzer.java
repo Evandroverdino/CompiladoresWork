@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import lexical.LexicalAnalyzer;
+import lexical.Token;
+import lexical.TokenCategory;
 import syntactic.grammar.Derivation;
 import syntactic.grammar.Grammar;
 import syntactic.grammar.NonTerminal;
@@ -11,9 +14,6 @@ import syntactic.grammar.NonTerminalName;
 import syntactic.grammar.OperatorsGrammar;
 import syntactic.grammar.Symbol;
 import syntactic.grammar.Terminal;
-import lexical.LexicalAnalyzer;
-import lexical.Token;
-import lexical.TokenCategory;
 
 public class PredictiveAnalyzer {
 
@@ -25,8 +25,12 @@ public class PredictiveAnalyzer {
 	private Stack<Symbol> stack;
 	private Derivation derivation;
 
-	// TODO
-	public PredictiveAnalyzer(Grammar grammar, PredictiveTable predictiveTable,
+	private List<String> linesPrinted;
+	
+	private Token previousToken;
+	private Token token;
+
+	public PredictiveAnalyzer(Grammar grammar, PredictiveTable predictiveTable, 
 			LexicalAnalyzer lexicalAnalyzer) {
 
 		this.grammar = grammar;
@@ -36,12 +40,13 @@ public class PredictiveAnalyzer {
 
 		stack = new Stack<Symbol>();
 		derivation = new Derivation();
+
+		linesPrinted = new ArrayList<String>();
 	}
 
 	public void predictiveAnalyze() {
-
 		Symbol topSymbol;
-		Token token = new Token();
+		token = new Token();
 		Terminal terminal;
 		NonTerminal topNonTerminal;
 		Integer derivationNumber;
@@ -51,7 +56,7 @@ public class PredictiveAnalyzer {
 		int rightCountAux = 0;
 
 		if (lexicalAnalyzer.hasMoreTokens()) {
-
+			previousToken = null;
 			token = lexicalAnalyzer.nextToken();
 
 			terminal = new Terminal(token);
@@ -59,116 +64,93 @@ public class PredictiveAnalyzer {
 			prodCount.push(1);
 
 			while (!stack.isEmpty()) {
-
+				checkLinesToPrint();
 				topSymbol = stack.peek();
 
 				if (topSymbol.isTerminal()) {
-
 					if (topSymbol.getValue() == terminal.getValue()) {
 						stack.pop();
 						if (lexicalAnalyzer.hasMoreTokens()) {
+							previousToken = token;
 							token = lexicalAnalyzer.nextToken();
 							terminal = new Terminal(token);
+							checkLinesToPrint();
 						}
-
 					} else {
-						SyntaticAnalyzer.printError(token);
-						System.exit(1);
+						showSyntaticError(token);
 					}
 
 				} else {
-
 					topNonTerminal = (NonTerminal) topSymbol;
 
 					if (topNonTerminal.getName() == NonTerminalName.EXPRESSION) {
 						if (!OperatorsGrammar.getInstance()
 								.getOperatorsGrammarSymbols()
 								.contains(terminal.getCategory())) {
-							SyntaticAnalyzer.printError(token);
-							System.exit(1);
+							showSyntaticError(token);
 
 						} else {
 							if (precedenceAnalyzer.precedenceAnalysis(token)) {
-
 								stack.pop();
 								topSymbol = stack.peek();
 
 								terminal = new Terminal(
 										precedenceAnalyzer.getEndOfSentence());
-
 							}
 						}
 					} else {
-
 						derivationNumber = null;
 
 						if (topNonTerminal.getName() == NonTerminalName.VALUE
 								&& terminal.getCategory() != TokenCategory.tOB) {
-
 							derivationNumber = Grammar.EXPRESSION;
 
 						} else {
 							derivationNumber = predictiveTable
-									.getDerivationNumber(
-											topNonTerminal.getName(),
-											terminal.getCategory());
+									.getDerivationNumber(topNonTerminal.getName(), terminal.getCategory());
 						}
 
 						if (derivationNumber != null) {
 							leftCount = prodCount.pop();
 							rightCountAux = rightCount;
 
-							derivation = grammar.getGrammarMap().get(
-									derivationNumber);
+							derivation = grammar.getGrammarMap().get(derivationNumber);
 
 							if (derivation != null) {
-								System.out.print(topNonTerminal.getName() + "("
-										+ leftCount + ")" + " = ");
+								System.out.print("          " + topNonTerminal.getName() + "(" + leftCount + ")" + " = ");
 								stack.pop();
-								// TO REMOVE
+
 								Symbol symb;
 								Terminal term;
 								NonTerminal nonTerm;
 
 								for (int i = derivation.getSymbolsList().size() - 1; i >= 0; i--) {
-
 									symb = derivation.getSymbolsList().get(i);
 									if (symb.isTerminal()) {
 										term = (Terminal) symb;
 									} else {
 										nonTerm = (NonTerminal) symb;
 									}
-
 									stack.push(symb);
 								}
 
-								for (int i = 0; i < derivation.getSymbolsList()
-										.size(); i++) {
+								for (int i = 0; i < derivation.getSymbolsList().size(); i++) {
 									symb = derivation.getSymbolsList().get(i);
 									if (symb.isTerminal()) {
 										term = (Terminal) symb;
-										System.out.print("'"
-												+ term.getCategory().toString()
-														.toLowerCase() + "'"
-												+ " ");
+										System.out.print("'" + term.getCategory().toString().toLowerCase() + "'" + " ");
 									} else {
 										nonTerm = (NonTerminal) symb;
-										if (!nonTerm.getName().equals(
-												NonTerminalName.EXPRESSION)) {
-											System.out.print(nonTerm.getName()
-													+ "(" + ++rightCount + ")"
-													+ " ");
+										if (!nonTerm.getName().equals(NonTerminalName.EXPRESSION)) {
+											System.out.print(nonTerm.getName() + "(" + ++rightCount + ")" + " ");
 										} else {
-
-											System.out.print(nonTerm.getName()
-													+ " ");
+											System.out.print(nonTerm.getName() + " ");
 										}
 									}
 								}
 								System.out.println();
 							} else {
-								System.out.println(topNonTerminal.getName()
-										+ "(" + leftCount + ")" + " = epsilon");
+								System.out.println("          " + topNonTerminal.getName() + "(" + leftCount + ")" + " = epsilon");
 								stack.pop();
 							}
 
@@ -180,13 +162,31 @@ public class PredictiveAnalyzer {
 							}
 
 						} else {
-							SyntaticAnalyzer.printError(terminal
-									.getTerminalToken());
-							System.exit(1);
+							showSyntaticError(terminal.getTerminalToken());
 						}
 					}
 				}
 			}
 		}
 	}
+
+	private void checkLinesToPrint() {
+		if (previousToken != null) {
+			if (!token.getValue().equals(previousToken.getValue())) {
+				System.out.println(previousToken.toString());
+				previousToken = null;
+			}
+		}
+		
+		if (!linesPrinted.contains(lexicalAnalyzer.getLine())) {
+			linesPrinted.add(lexicalAnalyzer.getLine());
+			System.out.println(lexicalAnalyzer.getLine().trim());
+		}
+	}
+
+	private void showSyntaticError(Token token) {
+		SyntaticAnalyzer.printError(token);
+		System.exit(1);
+	}
+	
 }
