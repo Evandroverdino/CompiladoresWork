@@ -8,15 +8,13 @@ public class ModuleAnalyzer {
 	private static LexicalAnalyzer lexicalAnalyzer;
 	private static SyntaticAnalyzer syntaticAnalyzer;
 	
-	private static String filePath = "files/input/shellsort.module";
+	private static String filePath = "files/input/fibonacci.module";
 
 	public static void main(String[] args) {
 		lexicalAnalyzer = new LexicalAnalyzer(filePath);
 		lexicalAnalyzer.readFile();
-		lexicalAnalyzer.printTokens();
 		
 		syntaticAnalyzer = new SyntaticAnalyzer(lexicalAnalyzer);
 		syntaticAnalyzer.analyze();
-		/*syntaticAnalyzer.printTokens(lexicalAnalyzer);*/
 	}
 }
