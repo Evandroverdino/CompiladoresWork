@@ -3,15 +3,14 @@ package syntactic;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import syntactic.grammar.Grammar;
+import lexical.LexicalAnalyzer;
+import lexical.Token;
+import lexical.TokenCategory;
 import syntactic.grammar.NonTerminal;
 import syntactic.grammar.NonTerminalName;
 import syntactic.grammar.OperatorsGrammar;
 import syntactic.grammar.Symbol;
 import syntactic.grammar.Terminal;
-import lexical.LexicalAnalyzer;
-import lexical.Token;
-import lexical.TokenCategory;
 
 public class PrecedenceAnalyzer {
 	private LexicalAnalyzer lexicalAnalyzer;
@@ -138,13 +137,7 @@ public class PrecedenceAnalyzer {
 					// PARAMEND
 
 					if (tableValue >= PrecedenceTable.R11 && tableValue <= PrecedenceTable.R16) {
-//						if (operatorsStack.peek().isTerminal()) {
-//							if (tableValue == PrecedenceTable.R16) {
-								currentTerm = (Terminal) operatorsStack.pop();
-//							} else {
-//								operatorsStack.pop();
-//							}
-//						}
+						currentTerm = (Terminal) operatorsStack.pop();
 						operatorsStack.push(new NonTerminal(NonTerminalName.EXPRESSION));
 					} else if (tableValue == PrecedenceTable.R7 || tableValue == PrecedenceTable.R8) {
 						if (!operatorsStack.peek().isTerminal()) {
@@ -229,13 +222,13 @@ public class PrecedenceAnalyzer {
 							handlerError();
 						}
 					}
-					
+
 					ArrayList<Symbol> derivation = OperatorsGrammar.getInstance().getOperatorDerivation(tableValue - 1)
 							.getSymbolsList();
 					TokenCategory term;
 					NonTerminal nonTerm;
 
-					System.out.print(NonTerminalName.EXPRESSION + "(" + count++ + ")" + " = ");
+					System.out.print("          " + NonTerminalName.EXPRESSION + "(" + count++ + ")" + " = ");
 
 					for (Symbol symbol : derivation) {
 						if (symbol.isTerminal()) {
