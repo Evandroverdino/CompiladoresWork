@@ -18,8 +18,8 @@ public class Token {
 
 	@Override
 	public String toString() {
-		return String.format("              [%04d, %04d] (%04d, %10s) {%s}", line, column, category.getCategoryValue(),
-				category.name(), value);
+		return String.format("              [%04d, %04d] (%04d, %10s) {%s}", 
+				line, column, category.getCategoryValue(), category.name(), value);
 	}
 
 	public String getValue() {

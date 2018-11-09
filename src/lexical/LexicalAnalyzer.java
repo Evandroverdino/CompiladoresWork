@@ -308,6 +308,10 @@ public class LexicalAnalyzer {
 		return false;
 	}
 
+	public String getLine() {
+		return line;
+	}
+
 	private void printError(String string, String token) {
 		System.err.println("Erro na <linha, coluna> " + "= <" + currentLine + "," + currentColumn + ">. " + "'" + token
 				+ "'" + " " + string);
