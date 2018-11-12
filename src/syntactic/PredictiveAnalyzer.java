@@ -25,10 +25,7 @@ public class PredictiveAnalyzer {
 	private Stack<Symbol> stack;
 	private Derivation derivation;
 
-	private List<String> linesPrinted;
-	
-	private Token previousToken;
-	private Token token;
+	private List<String> linesPrinted;	
 
 	public PredictiveAnalyzer(Grammar grammar, PredictiveTable predictiveTable, 
 			LexicalAnalyzer lexicalAnalyzer) {
@@ -46,19 +43,17 @@ public class PredictiveAnalyzer {
 
 	public void predictiveAnalyze() {
 		Symbol topSymbol;
-		token = new Token();
 		Terminal terminal;
 		NonTerminal topNonTerminal;
 		Integer derivationNumber;
+		Token token = new Token();
 		Stack<Integer> prodCount = new Stack<Integer>();
 		int leftCount = 0;
 		int rightCount = 1;
 		int rightCountAux = 0;
 
 		if (lexicalAnalyzer.hasMoreTokens()) {
-			previousToken = null;
 			token = lexicalAnalyzer.nextToken();
-
 			terminal = new Terminal(token);
 			stack.push(new NonTerminal(NonTerminalName.MODULE));
 			prodCount.push(1);
@@ -68,10 +63,11 @@ public class PredictiveAnalyzer {
 				topSymbol = stack.peek();
 
 				if (topSymbol.isTerminal()) {
+					System.out.println(token.toString());
+
 					if (topSymbol.getValue() == terminal.getValue()) {
 						stack.pop();
 						if (lexicalAnalyzer.hasMoreTokens()) {
-							previousToken = token;
 							token = lexicalAnalyzer.nextToken();
 							terminal = new Terminal(token);
 							checkLinesToPrint();
@@ -170,14 +166,7 @@ public class PredictiveAnalyzer {
 		}
 	}
 
-	private void checkLinesToPrint() {
-		if (previousToken != null) {
-			if (!token.getValue().equals(previousToken.getValue())) {
-				System.out.println(previousToken.toString());
-				previousToken = null;
-			}
-		}
-		
+	private void checkLinesToPrint() {		
 		if (!linesPrinted.contains(lexicalAnalyzer.getLine())) {
 			linesPrinted.add(lexicalAnalyzer.getLine());
 			System.out.println(lexicalAnalyzer.getLine().trim());
@@ -188,5 +177,5 @@ public class PredictiveAnalyzer {
 		SyntaticAnalyzer.printError(token);
 		System.exit(1);
 	}
-	
+
 }
