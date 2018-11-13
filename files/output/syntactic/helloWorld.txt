@@ -1,0 +1,25 @@
+main() empty {
+          MODULE(1) = FUNCTIONS(2) MAIN(3) 
+          FUNCTIONS(2) = epsilon
+          MAIN(3) = 'tmain' 'top' 'tcp' 'tempty' ESCOPE(4) 
+              [0000, 0000] (0001,      tMAIN) {main}
+              [0000, 0004] (0012,        tOP) {(}
+              [0000, 0005] (0013,        tCP) {)}
+              [0000, 0007] (0003,     tEMPTY) {empty}
+          ESCOPE(4) = 'tok' COMMANDS(5) 'tck' 'tsco' 
+              [0000, 0013] (0010,        tOK) {{}
+show("Hello World =)");
+          COMMANDS(5) = CMD(6) 'tsco' COMMANDS(7) 
+          CMD(6) = SHOW(8) 
+          SHOW(8) = 'tshow' 'top' MESSAGE(9) 'tcp' 
+              [0001, 0001] (0031,      tSHOW) {show}
+              [0001, 0005] (0012,        tOP) {(}
+          MESSAGE(9) = 'tctestring' MESSAGEEXT(10) 
+              [0001, 0006] (0024, tCTESTRING) {"Hello World =)"}
+          MESSAGEEXT(10) = epsilon
+              [0001, 0022] (0013,        tCP) {)}
+              [0001, 0023] (0017,       tSCO) {;}
+};
+          COMMANDS(7) = epsilon
+              [0002, 0000] (0011,        tCK) {}}
+              [0002, 0001] (0017,       tSCO) {;}

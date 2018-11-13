@@ -1,0 +1,315 @@
+fibonacci(int limit) empty {
+          MODULE(1) = FUNCTIONS(2) MAIN(3) 
+          FUNCTIONS(2) = 'tid' PARAMS(4) RETURNTYPE(5) ESCOPE(6) FUNCTIONS(7) 
+              [0000, 0000] (0002,        tID) {fibonacci}
+          PARAMS(4) = 'top' PARAMSEXT(8) 
+              [0000, 0009] (0012,        tOP) {(}
+          PARAMSEXT(8) = LISTPARAMS(9) 'tcp' 
+          LISTPARAMS(9) = TYPE(10) NAME(11) LISTPARAMSEXT(12) 
+          TYPE(10) = 'tint' 
+              [0000, 0010] (0004,       tINT) {int}
+          NAME(11) = 'tid' NAMEEXT(13) 
+              [0000, 0014] (0002,        tID) {limit}
+          NAMEEXT(13) = epsilon
+          LISTPARAMSEXT(12) = epsilon
+              [0000, 0019] (0013,        tCP) {)}
+          RETURNTYPE(5) = 'tempty' 
+              [0000, 0021] (0003,     tEMPTY) {empty}
+          ESCOPE(6) = 'tok' COMMANDS(14) 'tck' 'tsco' 
+              [0000, 0027] (0010,        tOK) {{}
+int count;
+          COMMANDS(14) = CMD(15) 'tsco' COMMANDS(16) 
+          CMD(15) = DECLARATION(17) 
+          DECLARATION(17) = TYPE(18) NAME(19) 
+          TYPE(18) = 'tint' 
+              [0001, 0001] (0004,       tINT) {int}
+          NAME(19) = 'tid' NAMEEXT(20) 
+              [0001, 0005] (0002,        tID) {count}
+          NAMEEXT(20) = epsilon
+              [0001, 0010] (0017,       tSCO) {;}
+int fib1;
+          COMMANDS(16) = CMD(21) 'tsco' COMMANDS(22) 
+          CMD(21) = DECLARATION(23) 
+          DECLARATION(23) = TYPE(24) NAME(25) 
+          TYPE(24) = 'tint' 
+              [0002, 0001] (0004,       tINT) {int}
+          NAME(25) = 'tid' NAMEEXT(26) 
+              [0002, 0005] (0002,        tID) {fib1}
+          NAMEEXT(26) = epsilon
+              [0002, 0009] (0017,       tSCO) {;}
+int fib2;
+          COMMANDS(22) = CMD(27) 'tsco' COMMANDS(28) 
+          CMD(27) = DECLARATION(29) 
+          DECLARATION(29) = TYPE(30) NAME(31) 
+          TYPE(30) = 'tint' 
+              [0003, 0001] (0004,       tINT) {int}
+          NAME(31) = 'tid' NAMEEXT(32) 
+              [0003, 0005] (0002,        tID) {fib2}
+          NAMEEXT(32) = epsilon
+              [0003, 0009] (0017,       tSCO) {;}
+int fib3;
+          COMMANDS(28) = CMD(33) 'tsco' COMMANDS(34) 
+          CMD(33) = DECLARATION(35) 
+          DECLARATION(35) = TYPE(36) NAME(37) 
+          TYPE(36) = 'tint' 
+              [0004, 0001] (0004,       tINT) {int}
+          NAME(37) = 'tid' NAMEEXT(38) 
+              [0004, 0005] (0002,        tID) {fib3}
+          NAMEEXT(38) = epsilon
+              [0004, 0009] (0017,       tSCO) {;}
+fib1 = 1;
+          COMMANDS(34) = CMD(39) 'tsco' COMMANDS(40) 
+          CMD(39) = 'tid' CMDEXT(41) 
+              [0006, 0001] (0002,        tID) {fib1}
+          CMDEXT(41) = ATTRIBUTION(42) 
+          ATTRIBUTION(42) = NAMEEXT(43) 'tatr' VALUE(44) 
+          NAMEEXT(43) = epsilon
+              [0006, 0006] (0043,       tATR) {=}
+          VALUE(44) = EXPRESSION 
+
+          EXPRESSION(1) = tCTEINT("1") 
+
+              [0006, 0008] (0020,    tCTEINT) {1}
+              [0006, 0009] (0017,       tSCO) {;}
+fib2 = 1;
+          COMMANDS(40) = CMD(45) 'tsco' COMMANDS(46) 
+          CMD(45) = 'tid' CMDEXT(47) 
+              [0007, 0001] (0002,        tID) {fib2}
+          CMDEXT(47) = ATTRIBUTION(48) 
+          ATTRIBUTION(48) = NAMEEXT(49) 'tatr' VALUE(50) 
+          NAMEEXT(49) = epsilon
+              [0007, 0006] (0043,       tATR) {=}
+          VALUE(50) = EXPRESSION 
+
+          EXPRESSION(1) = tCTEINT("1") 
+
+              [0007, 0008] (0020,    tCTEINT) {1}
+              [0007, 0009] (0017,       tSCO) {;}
+if(limit == 0) {
+          COMMANDS(46) = CMD(51) 'tsco' COMMANDS(52) 
+          CMD(51) = IFELSE(53) 
+          IFELSE(53) = IF(54) ELIF(55) ELSE(56) 
+          IF(54) = 'tif' 'top' EXPRESSION 'tcp' 'tok' COMMANDS(57) 'tck' 
+              [0009, 0001] (0025,        tIF) {if}
+              [0009, 0003] (0012,        tOP) {(}
+
+          EXPRESSION(1) = tID("limit") 
+          EXPRESSION(2) = tCTEINT("0") 
+          EXPRESSION(3) = EXPRESSION tORE EXPRESSION 
+
+              [0009, 0004] (0002,        tID) {limit}
+              [0009, 0010] (0042,    tORE) {==}
+              [0009, 0013] (0020,    tCTEINT) {0}
+              [0009, 0014] (0013,        tCP) {)}
+              [0009, 0016] (0010,        tOK) {{}
+show("0");
+          COMMANDS(57) = CMD(58) 'tsco' COMMANDS(59) 
+          CMD(58) = SHOW(60) 
+          SHOW(60) = 'tshow' 'top' MESSAGE(61) 'tcp' 
+              [0010, 0002] (0031,      tSHOW) {show}
+              [0010, 0006] (0012,        tOP) {(}
+          MESSAGE(61) = 'tctestring' MESSAGEEXT(62) 
+              [0010, 0007] (0024, tCTESTRING) {"0"}
+          MESSAGEEXT(62) = epsilon
+              [0010, 0010] (0013,        tCP) {)}
+              [0010, 0011] (0017,       tSCO) {;}
+};
+          COMMANDS(59) = epsilon
+              [0011, 0001] (0011,        tCK) {}}
+          ELIF(55) = epsilon
+          ELSE(56) = epsilon
+              [0011, 0002] (0017,       tSCO) {;}
+when(count < limit) {
+          COMMANDS(52) = CMD(63) 'tsco' COMMANDS(64) 
+          CMD(63) = WHEN(65) 
+          WHEN(65) = 'twhen' 'top' EXPRESSION 'tcp' 'tok' COMMANDS(66) 'tck' 
+              [0013, 0001] (0030,      tWHEN) {when}
+              [0013, 0005] (0012,        tOP) {(}
+
+          EXPRESSION(1) = tID("count") 
+          EXPRESSION(2) = tID("limit") 
+          EXPRESSION(3) = EXPRESSION tORC EXPRESSION 
+
+              [0013, 0006] (0002,        tID) {count}
+              [0013, 0012] (0041,        tORC) {<}
+              [0013, 0014] (0002,        tID) {limit}
+              [0013, 0019] (0013,        tCP) {)}
+              [0013, 0021] (0010,        tOK) {{}
+if(count < 2) {
+          COMMANDS(66) = CMD(67) 'tsco' COMMANDS(68) 
+          CMD(67) = IFELSE(69) 
+          IFELSE(69) = IF(70) ELIF(71) ELSE(72) 
+          IF(70) = 'tif' 'top' EXPRESSION 'tcp' 'tok' COMMANDS(73) 'tck' 
+              [0014, 0002] (0025,        tIF) {if}
+              [0014, 0004] (0012,        tOP) {(}
+
+          EXPRESSION(1) = tID("count") 
+          EXPRESSION(2) = tCTEINT("2") 
+          EXPRESSION(3) = EXPRESSION tORC EXPRESSION 
+
+              [0014, 0005] (0002,        tID) {count}
+              [0014, 0011] (0041,        tORC) {<}
+              [0014, 0013] (0020,        tCTEINT) {2}
+              [0014, 0014] (0013,        tCP) {)}
+              [0014, 0016] (0010,        tOK) {{}
+show("1, ");
+          COMMANDS(73) = CMD(74) 'tsco' COMMANDS(75) 
+          CMD(74) = SHOW(76) 
+          SHOW(76) = 'tshow' 'top' MESSAGE(77) 'tcp' 
+              [0015, 0003] (0031,      tSHOW) {show}
+              [0015, 0007] (0012,        tOP) {(}
+          MESSAGE(77) = 'tctestring' MESSAGEEXT(78) 
+              [0015, 0008] (0024, tCTESTRING) {"1, "}
+          MESSAGEEXT(78) = epsilon
+              [0015, 0013] (0013,        tCP) {)}
+              [0015, 0014] (0017,       tSCO) {;}
+} else {
+          COMMANDS(75) = epsilon
+              [0016, 0002] (0011,        tCK) {}}
+          ELIF(71) = epsilon
+          ELSE(72) = 'telse' 'tok' COMMANDS(79) 'tck' 
+              [0016, 0004] (0026,      tELSE) {else}
+              [0016, 0009] (0010,        tOK) {{}
+fib3 = fib1 + fib2;
+          COMMANDS(79) = CMD(80) 'tsco' COMMANDS(81) 
+          CMD(80) = 'tid' CMDEXT(82) 
+              [0017, 0003] (0002,        tID) {fib3}
+          CMDEXT(82) = ATTRIBUTION(83) 
+          ATTRIBUTION(83) = NAMEEXT(84) 'tatr' VALUE(85) 
+          NAMEEXT(84) = epsilon
+              [0017, 0008] (0043,       tATR) {=}
+          VALUE(85) = EXPRESSION 
+
+          EXPRESSION(1) = tID("fib1") 
+          EXPRESSION(2) = tID("fib2") 
+          EXPRESSION(3) = EXPRESSION tOPA EXPRESSION 
+
+              [0017, 0010] (0002,        tID) {fib1}
+              [0017, 0015] (0037,        tOPA) {+}
+              [0017, 0017] (0002,        tID) {fib2}
+              [0017, 0021] (0017,       tSCO) {;}
+fib1 = fib2;
+          COMMANDS(81) = CMD(86) 'tsco' COMMANDS(87) 
+          CMD(86) = 'tid' CMDEXT(88) 
+              [0018, 0003] (0002,        tID) {fib1}
+          CMDEXT(88) = ATTRIBUTION(89) 
+          ATTRIBUTION(89) = NAMEEXT(90) 'tatr' VALUE(91) 
+          NAMEEXT(90) = epsilon
+              [0018, 0008] (0043,       tATR) {=}
+          VALUE(91) = EXPRESSION 
+
+          EXPRESSION(1) = tID("fib2") 
+
+              [0018, 0010] (0002,        tID) {fib2}
+              [0018, 0014] (0017,        tSCO) {;}
+fib2 = fib3;
+          COMMANDS(87) = CMD(92) 'tsco' COMMANDS(93) 
+          CMD(92) = 'tid' CMDEXT(94) 
+              [0019, 0003] (0002,        tID) {fib2}
+          CMDEXT(94) = ATTRIBUTION(95) 
+          ATTRIBUTION(95) = NAMEEXT(96) 'tatr' VALUE(97) 
+          NAMEEXT(96) = epsilon
+              [0019, 0008] (0043,       tATR) {=}
+          VALUE(97) = EXPRESSION 
+
+          EXPRESSION(1) = tID("fib3") 
+
+              [0019, 0010] (0002,        tID) {fib3}
+              [0019, 0014] (0017,        tSCO) {;}
+show(fib3 ++ ", ");
+          COMMANDS(93) = CMD(98) 'tsco' COMMANDS(99) 
+          CMD(98) = SHOW(100) 
+          SHOW(100) = 'tshow' 'top' MESSAGE(101) 'tcp' 
+              [0020, 0003] (0031,      tSHOW) {show}
+              [0020, 0007] (0012,        tOP) {(}
+          MESSAGE(101) = NAME(102) MESSAGEEXT(103) 
+          NAME(102) = 'tid' NAMEEXT(104) 
+              [0020, 0008] (0002,        tID) {fib3}
+          NAMEEXT(104) = epsilon
+          MESSAGEEXT(103) = 'tconcat' MESSAGE(105) 
+              [0020, 0013] (0044,    tCONCAT) {++}
+          MESSAGE(105) = 'tctestring' MESSAGEEXT(106) 
+              [0020, 0016] (0024, tCTESTRING) {", "}
+          MESSAGEEXT(106) = epsilon
+              [0020, 0020] (0013,        tCP) {)}
+              [0020, 0021] (0017,       tSCO) {;}
+};
+          COMMANDS(99) = epsilon
+              [0021, 0002] (0011,        tCK) {}}
+              [0021, 0003] (0017,       tSCO) {;}
+count = count + 1;
+          COMMANDS(68) = CMD(107) 'tsco' COMMANDS(108) 
+          CMD(107) = 'tid' CMDEXT(109) 
+              [0022, 0002] (0002,        tID) {count}
+          CMDEXT(109) = ATTRIBUTION(110) 
+          ATTRIBUTION(110) = NAMEEXT(111) 'tatr' VALUE(112) 
+          NAMEEXT(111) = epsilon
+              [0022, 0008] (0043,       tATR) {=}
+          VALUE(112) = EXPRESSION 
+
+          EXPRESSION(1) = tID("count") 
+          EXPRESSION(2) = tCTEINT("1") 
+          EXPRESSION(3) = EXPRESSION tOPA EXPRESSION 
+
+              [0022, 0010] (0002,        tID) {count}
+              [0022, 0016] (0037,        tOPA) {+}
+              [0022, 0018] (0020,        tCTEINT) {1}
+              [0022, 0019] (0017,        tSCO) {;}
+          COMMANDS(108) = epsilon
+};
+              [0023, 0001] (0011,        tCK) {}}
+              [0023, 0002] (0017,       tSCO) {;}
+};
+          COMMANDS(64) = epsilon
+              [0024, 0000] (0011,        tCK) {}}
+              [0024, 0001] (0017,       tSCO) {;}
+main() empty {
+          MODULE(1) = FUNCTIONS(2) MAIN(3) 
+          FUNCTIONS(2) = epsilon
+          MAIN(3) = 'tmain' 'top' 'tcp' 'tempty' ESCOPE(4) 
+              [0000, 0000] (0001,      tMAIN) {main}
+              [0000, 0004] (0012,        tOP) {(}
+              [0000, 0005] (0013,        tCP) {)}
+              [0000, 0007] (0003,     tEMPTY) {empty}
+          ESCOPE(4) = 'tok' COMMANDS(5) 'tck' 'tsco' 
+              [0000, 0013] (0010,        tOK) {{}
+int limit;
+          COMMANDS(5) = CMD(6) 'tsco' COMMANDS(7) 
+          CMD(6) = DECLARATION(8) 
+          DECLARATION(8) = TYPE(9) NAME(10) 
+          TYPE(9) = 'tint' 
+              [0001, 0001] (0004,       tINT) {int}
+          NAME(10) = 'tid' NAMEEXT(11) 
+              [0001, 0005] (0002,        tID) {limit}
+          NAMEEXT(11) = epsilon
+              [0001, 0010] (0017,       tSCO) {;}
+read(limit);
+          COMMANDS(7) = CMD(12) 'tsco' COMMANDS(13) 
+          CMD(12) = READ(14) 
+          READ(14) = 'tread' 'top' NAME(15) 'tcp' 
+              [0002, 0001] (0032,      tREAD) {read}
+              [0002, 0005] (0012,        tOP) {(}
+          NAME(15) = 'tid' NAMEEXT(16) 
+              [0002, 0006] (0002,        tID) {limit}
+          NAMEEXT(16) = epsilon
+              [0002, 0011] (0013,        tCP) {)}
+              [0002, 0012] (0017,       tSCO) {;}
+fibonacci(limit);
+          COMMANDS(13) = CMD(17) 'tsco' COMMANDS(18) 
+          CMD(17) = 'tid' CMDEXT(19) 
+              [0003, 0001] (0002,        tID) {fibonacci}
+          CMDEXT(19) = FUNCCALL(20) 
+          FUNCCALL(20) = 'top' LISTPARAMSCALL(21) 'tcp' 
+              [0003, 0010] (0012,        tOP) {(}
+          LISTPARAMSCALL(21) = PARAMITEM(22) LISTPARAMSCALLEXT(23) 
+          PARAMITEM(22) = NAME(24) 
+          NAME(24) = 'tid' NAMEEXT(25) 
+              [0003, 0011] (0002,        tID) {limit}
+          NAMEEXT(25) = epsilon
+          LISTPARAMSCALLEXT(23) = epsilon
+              [0003, 0016] (0013,        tCP) {)}
+              [0003, 0017] (0017,       tSCO) {;}
+};
+          COMMANDS(18) = epsilon
+              [0004, 0000] (0011,        tCK) {}}
+              [0004, 0001] (0017,       tSCO) {;}
